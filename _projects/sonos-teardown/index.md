@@ -1,16 +1,16 @@
 ---
 layout: post
-title: Sonos Teardown
-description: Conducted detailed teardown analysis of Sonos Era speaker, documenting internal components, driver configuration, and PCB design. Created technical documentation with photos and assembly insights for engineering reference. 
+title: Robotic Violin
+description: Conducted a full design and build of a robotic violin capable of performing musical arrangements in response to WiFi UDP signals, integrating mechanical and electrical systems. Developed CATIA models and laser cut acrylic components, and implemented ESP32 based control using Arduino to drive servos and DC actuators for bowing and fingering motions.
 skills: 
-  - drumel
-  - microprobing
-  - Electronics Teardown
-  - PCB analysis
-  - audio system design
+  - CATIA
+  - Arduino
+  - Electronics
+  - Breadboarding
+  - Laser Cutting
 
 main-image: /sonos.png
 ---
 
-# This is another demo
+
 
