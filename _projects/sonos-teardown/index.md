@@ -11,8 +11,10 @@ skills:
 
 main-image: /violin.png
 ---
+## CAD
+---
 ## Code
-```C++
+```C
 #include <WiFi.h>
 #include <WiFiUdp.h>
 #define ONEmS_COUNTS ((1 << 12) * 50 / 1000)
@@ -71,7 +73,6 @@ int checkUDP() {
  int min_counts = ONEmS_COUNTS; // conservative is 1mS for minimum
 int max_counts = 1.5 * ONEmS_COUNTS;
 void setup() {
- // put your setup code here, to run once:
  ledcSetup(0, 50, 12);
  ledcAttachPin(0, 0);
  ledcSetup(1, 50, 12);
@@ -84,7 +85,7 @@ void setup() {
 }
 //cover/ open
 void cover(int chan) {
- // code for different servers:
+ // code for different servos:
  for (int i = min_counts; i < max_counts; i++) {
  ledcWrite(chan, i); // sweep servo forward
  delayMicroseconds(1000); // need this 20mS for 1 cycle at 50Hz
@@ -127,7 +128,6 @@ void debug1() {
  delay(3000);
 }
 void loop() {
- // put your main code here, to run repeatedly:
  playSequence();
 }
 ```
