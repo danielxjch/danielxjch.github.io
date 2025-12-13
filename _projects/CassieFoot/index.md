@@ -7,7 +7,7 @@ skills:
   - Fusion360
   
 
-main-image: Cassie_main.png
+main-image: /Cassie_main.png
 ---
 ---
 ## CAD
