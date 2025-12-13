@@ -7,5 +7,9 @@ skills:
   - Fusion360
   
 
-main-image: cassie_main.png
+main-image: Cassie_main.png
+---
+---
+## CAD
+{% include image-gallery.html images="cassie_CAD.png" height="700" %} 
 ---
