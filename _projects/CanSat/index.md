@@ -1,16 +1,17 @@
 ---
 layout: post
 title: CanSat
-description:  (I have never been employed by / affiliated with SpaceX. This is for demo use only) 
-    Developing the Super Heavy booster catch project involves designing a robust launch tower with "chopstick" arms, advanced control systems for precise booster alignment, and integrating sophisticated software for real-time trajectory adjustments and structural engineering to handle immense forces.
+description:  Designed and built a satellite system for atmospheric data collection and periodic transmission to a Yagi antenna ground station. Implemented a controlled landing sequence using a parachute cutaway mechanism and deployable drone propellers, triggered by emulated SBUS receiver protocol from an onboard microcontroller to modify flight controller settings.
 skills: 
-  - Structural analysis
-  - Aerodynamic design
-  - Propulsion system integration
-  - Control Algorithem 
-  - Welding
-  - Metal forming
-  - Thermal simulation
+  - Fusion360
+  - Arduino
+  - Soldering
+  - Breadboard
+  - Electronics
+  - Drone Components (Flight Controller, ESC)
+  - Signal Processing
 
-main-image: 
+main-image: /CanSat_extended.png
+---
+{% include image-gallery.html images="CanSat_main.png" height="500" %}
 ---
