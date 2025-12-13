@@ -20,3 +20,4 @@ main-image: /CanSat_extended.png
 ---
 ## Code
 {% include image-gallery.html images="CanSat_code.png" height="700" %}
+---
