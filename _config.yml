@@ -25,7 +25,7 @@ profile_image: ./assets/images/profile-image/1729361401777.jfif
 
 # Link your resume
 # You can place your resume in assets/resume/{resume.pdf or add external link such as pdf saved in google drive 
-resume-url: https://drive.google.com/file/d/1V8dPizuS1xOY_swEu-ZgD-pLbqk-fmRP/view # or /assets/resume/resume.pdf
+resume-url: https://drive.google.com/file/d/1hE4OYyBVghkJkYPLfuZtA9V9fUoku8tv/view # or /assets/resume/resume.pdf
 
 
 # Set up external links - this will show up as small icons next to your name.
@@ -61,6 +61,8 @@ skills:
     - Soldering
     - Xometry
     - GD&T
+    - BOM
+    - TCO
   - category: Programming
     tools:
     - Python
