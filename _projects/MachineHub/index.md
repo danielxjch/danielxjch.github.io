@@ -25,12 +25,7 @@ The core of the platform: users build an ownership scenario (years, hours, price
 ## Market Comparisons
 Each machine is positioned against its competitive class on operating cost per hour and value retained, built from published industry data and resale history. A tap-to-estimate interaction converts the relative difference into an estimated savings figure for the user's specific scenario. Every chart's numeric detail (dollar values, percentages, or bare shape) is controlled per user role by an admin-configurable permission matrix.
 {% include image-gallery.html images="hub-tco-compare.png" height="800" %}
-{% include image-gallery.html images="hub-tco-resale.png, hub-tco-breakdown.png" height="255" %}
-
----
-## Maintenance Planning
-The planned-maintenance schedule is priced against the user's scenario — every service interval expands into its parts, fluids, and labor lines, and totals roll up into the cost model. Internal users get part numbers and CSV export.
-{% include image-gallery.html images="hub-maintenance.png" height="990" %}
+{% include image-gallery.html images="hub-tco-resale.png, hub-tco-breakdown.png" height="325" %}
 
 ---
 ## Attachment Compatibility
@@ -41,7 +36,6 @@ An interactive working-range grid derived from each machine's load chart: pick a
 ## Machine Pages
 Every model gets a full profile — narrative overview, spec sheet (CSV-exportable), and downloadable documents (spec sheets, brochures, videos) stored in Supabase Storage with per-role visibility.
 {% include image-gallery.html images="hub-about.jpg, hub-documents.png" height="255" %}
-{% include image-gallery.html images="hub-about-cards.png" height="265" %}
 {% include image-gallery.html images="hub-specs.png" height="800" %}
 
 ---
