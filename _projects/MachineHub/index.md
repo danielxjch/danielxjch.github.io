@@ -53,14 +53,27 @@ An embedded Claude-powered assistant available across the app. It answers machin
 
 ---
 ## Admin Backend
-The half you can't screenshot publicly: a full internal system that lets non-technical staff run the platform.
+A full internal system that lets non-technical staff run the platform. The model catalog tracks every machine's status and **data health** — flagging models with incomplete data before they can mislead a customer.
+{% include image-gallery.html images="hub-admin-models.png" height="765" %}
+
+The rest is sensitive enough to describe rather than show:
 
 - **Model editors** — machine setup, spec templates, maintenance schedules, warranty records, resale/auction data, comparison rows, lifting performance, and per-model documents
 - **Excel import pipeline** — migrated the legacy workbooks into the database, including a server-side curve-refit that replaced Excel Solver
 - **Role-based access** — six user roles (owner → customer) with a per-role permission matrix controlling every tab, chart, and figure on the customer side
 - **User management & audit log** — account administration with an append-only audit trail of admin actions
 - **PDF reports** — any scenario prints to a SANY-branded customer report with figures, charts, and a methodology appendix
-- **Assistant console** — avatar, model, and API-key management for SANY Bob, with keys stored encrypted
+
+### The Assistant Console
+SANY Bob gets his own admin area. Setup connects the API key (encrypted at rest, never shown again in full) and picks the Claude model, with plain-language cost/quality tradeoffs for non-technical admins.
+{% include image-gallery.html images="hub-bob-setup.png" height="865" %}
+
+The avatar gallery rotates Bob's look through the seasons — uploads are resized automatically.
+{% include image-gallery.html images="hub-bob-avatar.png" height="835" %}
+
+Personality and Priorities let the owner shape how Bob *sounds* and what he *emphasizes* per task type (selling points, machine selection, head-to-head comparisons) via drag-and-drop tiers — while the UI is explicit that these steer tone and emphasis only, and can never change what data a role is allowed to see or override his safety rules.
+{% include image-gallery.html images="hub-bob-personality.png" height="700" %}
+{% include image-gallery.html images="hub-bob-priorities.png" height="895" %}
 
 ---
 ## Engineering Notes
