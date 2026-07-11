@@ -57,10 +57,10 @@ The rest is sensitive enough to describe rather than show:
 - **PDF reports** — any scenario prints to a SANY-branded customer report with figures, charts, and a methodology appendix
 
 ### The Assistant Console
-SANY Bob gets his own admin area. Setup connects the API key (encrypted at rest, never shown again in full) and picks the Claude model, with plain-language cost/quality tradeoffs for non-technical admins. The avatar gallery rotates Bob's look through the seasons — uploads are resized automatically.
+SANY Bob gets his own admin area. Setup connects the API key (encrypted at rest, never shown again in full) and picks the Claude model, with plain-language cost/quality tradeoffs for non-technical admins. The avatar gallery rotates SANY Bob's look through the seasons — uploads are resized automatically.
 {% include image-gallery.html images="hub-bob-setup.png, hub-bob-avatar.png" height="435" %}
 
-Personality and Priorities let the owner shape how Bob *sounds* and what he *emphasizes* per task type (selling points, machine selection, head-to-head comparisons) via drag-and-drop tiers — while the UI is explicit that these steer tone and emphasis only, and can never change what data a role is allowed to see or override his safety rules.
+Personality and Priorities let the owner shape how SANY Bob *sounds* and what he *emphasizes* per task type (selling points, machine selection, head-to-head comparisons) via drag-and-drop tiers — while the UI is explicit that these steer tone and emphasis only, and can never change what data a role is allowed to see or override his safety rules.
 {% include image-gallery.html images="hub-bob-personality.png" height="700" %}
 {% include image-gallery.html images="hub-bob-priorities.png" height="895" %}
 
