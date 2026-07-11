@@ -18,31 +18,38 @@ main-image: /hub-home.jpg
 ---
 ## Total Cost of Ownership Calculator
 The core of the platform: users build an ownership scenario (years, hours, price, financing, fuel, labor) and get a complete hourly, yearly, and lifetime cost picture, computed live by a pure TypeScript calculation engine that replaced a suite of legacy Excel workbooks. Depreciation is modeled from historical resale data, so the projected residual value reflects how these machines actually hold value in the field.
-{% include image-gallery.html images="hub-tco-hero.png" height="700" %}
+{% include image-gallery.html images="hub-tco-hero.png" height="810" %}
 *Some dollar figures are redacted; scenario inputs shown are illustrative examples, not quotes.*
 
 ---
 ## Market Comparisons
 Each machine is positioned against its competitive class on operating cost per hour and value retained, built from published industry data and resale history. A tap-to-estimate interaction converts the relative difference into an estimated savings figure for the user's specific scenario. Every chart's numeric detail (dollar values, percentages, or bare shape) is controlled per user role by an admin-configurable permission matrix.
-{% include image-gallery.html images="hub-tco-compare.png" height="640" %}
-{% include image-gallery.html images="hub-tco-breakdown.png" height="380" %}
+{% include image-gallery.html images="hub-tco-compare.png" height="800" %}
+{% include image-gallery.html images="hub-tco-resale.png" height="435" %}
+{% include image-gallery.html images="hub-tco-breakdown.png" height="575" %}
 
 ---
 ## Maintenance Planning
 The planned-maintenance schedule is priced against the user's scenario — every service interval expands into its parts, fluids, and labor lines, and totals roll up into the cost model. Internal users get part numbers and CSV export.
-{% include image-gallery.html images="hub-maintenance.png" height="700" %}
+{% include image-gallery.html images="hub-maintenance.png" height="990" %}
 
 ---
 ## Attachment Compatibility
 An interactive working-range grid derived from each machine's load chart: pick a material and a zone, and it computes the largest bucket the machine can safely lift there, derated to over-the-side ratings and accounting for fitted attachments.
-{% include image-gallery.html images="hub-lift.png" height="620" %}
+{% include image-gallery.html images="hub-lift.png" height="595" %}
 
 ---
 ## Machine Pages
 Every model gets a full profile — narrative overview, spec sheet (CSV-exportable), and downloadable documents (spec sheets, brochures, videos) stored in Supabase Storage with per-role visibility.
-{% include image-gallery.html images="hub-about.jpg" height="540" %}
-{% include image-gallery.html images="hub-specs.png" height="600" %}
-{% include image-gallery.html images="hub-documents.png" height="420" %}
+{% include image-gallery.html images="hub-about.jpg" height="520" %}
+{% include image-gallery.html images="hub-about-cards.png" height="265" %}
+{% include image-gallery.html images="hub-specs.png" height="800" %}
+{% include image-gallery.html images="hub-documents.png" height="445" %}
+
+---
+## SANY Bob — AI Assistant
+An embedded Claude-powered assistant available across the app. It answers machine questions from the Hub's own data (specs, maintenance, cost of ownership, warranty, resale) and can pull in marked web sources, deep-linking users to the relevant tab. Conversations persist per user, and the API key is stored encrypted with an admin-configurable model setup.
+{% include image-gallery.html images="hub-assistant.png" height="720" %}
 
 ---
 ## Admin Backend
@@ -53,7 +60,7 @@ The half you can't screenshot publicly: a full internal system that lets non-tec
 - **Role-based access** — six user roles (owner → customer) with a per-role permission matrix controlling every tab, chart, and figure on the customer side
 - **User management & audit log** — account administration with an append-only audit trail of admin actions
 - **PDF reports** — any scenario prints to a SANY-branded customer report with figures, charts, and a methodology appendix
-- **AI assistant** — an embedded Claude-powered chatbot that answers machine questions with web-lookup support
+- **Assistant console** — avatar, model, and API-key management for SANY Bob, with keys stored encrypted
 
 ---
 ## Engineering Notes
