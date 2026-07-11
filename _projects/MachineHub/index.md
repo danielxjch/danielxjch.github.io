@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SANY Machine Hub
-description: Full-stack web platform built end-to-end during my work term at SANY America — replacing the company's Excel-based Total Cost of Ownership workflow with a production web app. Customer-facing machine hub with a TCO calculator, market comparisons, maintenance planning, and branded PDF reports, backed by an internal admin system for data entry, roles, and auditing. Next.js + TypeScript + PostgreSQL, deployed on Vercel and in production use.
+description: Full-stack web platform built end-to-end during my work term at SANY America — replacing SANY America's Excel-based Total Cost of Ownership workflow with a production web app. Customer-facing machine hub with a TCO calculator, market comparisons, maintenance planning, and branded PDF reports, backed by an internal admin system for data entry, roles, and auditing. Next.js + TypeScript + PostgreSQL, deployed on Vercel and in production use.
 skills:
   - TypeScript
   - React / Next.js
@@ -25,8 +25,7 @@ The core of the platform: users build an ownership scenario (years, hours, price
 ## Market Comparisons
 Each machine is positioned against its competitive class on operating cost per hour and value retained, built from published industry data and resale history. A tap-to-estimate interaction converts the relative difference into an estimated savings figure for the user's specific scenario. Every chart's numeric detail (dollar values, percentages, or bare shape) is controlled per user role by an admin-configurable permission matrix.
 {% include image-gallery.html images="hub-tco-compare.png" height="800" %}
-{% include image-gallery.html images="hub-tco-resale.png" height="435" %}
-{% include image-gallery.html images="hub-tco-breakdown.png" height="575" %}
+{% include image-gallery.html images="hub-tco-resale.png, hub-tco-breakdown.png" height="255" %}
 
 ---
 ## Maintenance Planning
@@ -41,10 +40,9 @@ An interactive working-range grid derived from each machine's load chart: pick a
 ---
 ## Machine Pages
 Every model gets a full profile — narrative overview, spec sheet (CSV-exportable), and downloadable documents (spec sheets, brochures, videos) stored in Supabase Storage with per-role visibility.
-{% include image-gallery.html images="hub-about.jpg" height="520" %}
+{% include image-gallery.html images="hub-about.jpg, hub-documents.png" height="255" %}
 {% include image-gallery.html images="hub-about-cards.png" height="265" %}
 {% include image-gallery.html images="hub-specs.png" height="800" %}
-{% include image-gallery.html images="hub-documents.png" height="445" %}
 
 ---
 ## SANY Bob — AI Assistant
@@ -65,11 +63,8 @@ The rest is sensitive enough to describe rather than show:
 - **PDF reports** — any scenario prints to a SANY-branded customer report with figures, charts, and a methodology appendix
 
 ### The Assistant Console
-SANY Bob gets his own admin area. Setup connects the API key (encrypted at rest, never shown again in full) and picks the Claude model, with plain-language cost/quality tradeoffs for non-technical admins.
-{% include image-gallery.html images="hub-bob-setup.png" height="865" %}
-
-The avatar gallery rotates Bob's look through the seasons — uploads are resized automatically.
-{% include image-gallery.html images="hub-bob-avatar.png" height="835" %}
+SANY Bob gets his own admin area. Setup connects the API key (encrypted at rest, never shown again in full) and picks the Claude model, with plain-language cost/quality tradeoffs for non-technical admins. The avatar gallery rotates Bob's look through the seasons — uploads are resized automatically.
+{% include image-gallery.html images="hub-bob-setup.png, hub-bob-avatar.png" height="435" %}
 
 Personality and Priorities let the owner shape how Bob *sounds* and what he *emphasizes* per task type (selling points, machine selection, head-to-head comparisons) via drag-and-drop tiers — while the UI is explicit that these steer tone and emphasis only, and can never change what data a role is allowed to see or override his safety rules.
 {% include image-gallery.html images="hub-bob-personality.png" height="700" %}
@@ -79,6 +74,9 @@ Personality and Priorities let the owner shape how Bob *sounds* and what he *emp
 ## Engineering Notes
 - **Stack:** Next.js 14 (App Router) + TypeScript, Prisma over PostgreSQL (Supabase), Tailwind CSS, Recharts, NextAuth; deployed on Vercel with push-to-deploy
 - The calculation engine is a **pure, dependency-free module** — no UI or database imports — covered by a Vitest regression suite, so finance/depreciation math can be verified independently of the app
+- **Depreciation methodology** — retained-value curves grounded in Mike Vorster's *Construction Equipment Economics*, fit to historical auction results
+- **Repair-buffer methodology** — the opt-in unplanned-maintenance estimate takes its magnitude from **USACE EP 1110-1-8** (*Construction Equipment Ownership and Operating Expense Schedule*, 2018) equipment-class factors and its age shape from **Vorster §6-2** — built entirely from published, citable sources so a third party can audit every constant
+- **EquipmentWatch calibration** — EquipmentWatch's residual-value model is a black box, so I developed a six-calibration-curve method (per-curve nonlinear least-squares fits, originally driven by Excel Solver, later ported to a server-side fitter) that reproduces its outputs and lets the app price residuals without the workbook
 - Scenario state is **URL-addressable** (machine, tab, saved scenario), so bookmarks and refreshes restore the exact view
 - Server-rendered pages with role-resolved data: the server decides per role what data ships to the browser
 - Wrote the full documentation set for handoff: developer/admin manual, three role-specific user guides, and methodology specs
