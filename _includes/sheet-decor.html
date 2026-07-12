@@ -63,4 +63,34 @@
         <text x="75" y="257.5" font-size="12" text-anchor="middle" stroke="none">B</text>
         <text x="60" y="296" font-size="9" stroke="none">SECTION C-C</text>
     </svg>
+
+    <!-- Detail view: slot with center marks and a center-to-center dimension -->
+    <svg class="decor-detail" viewBox="0 0 160 190" fill="none" stroke="currentColor" stroke-width="1">
+        <path d="M50,70 L110,70 A20,20 0 0 1 110,110 L50,110 A20,20 0 0 1 50,70 Z"/>
+        <line x1="25" y1="90" x2="135" y2="90" stroke-width="0.75" stroke-dasharray="12 3 3 3"/>
+        <line x1="50" y1="78" x2="50" y2="102" stroke-width="0.75"/>
+        <line x1="110" y1="78" x2="110" y2="102" stroke-width="0.75"/>
+        <!-- center distance dimension -->
+        <line x1="50" y1="82" x2="50" y2="42" stroke-width="0.75"/>
+        <line x1="110" y1="82" x2="110" y2="42" stroke-width="0.75"/>
+        <line x1="50" y1="48" x2="110" y2="48" stroke-width="0.75"/>
+        <polygon points="50,48 58,45.8 58,50.2" fill="currentColor" stroke="none"/>
+        <polygon points="110,48 102,45.8 102,50.2" fill="currentColor" stroke="none"/>
+        <text x="80" y="42" font-size="10" text-anchor="middle" stroke="none">60.0</text>
+        <text x="46" y="158" font-size="9" stroke="none">DETAIL C</text>
+        <text x="46" y="172" font-size="8.5" stroke="none">SCALE 2:1</text>
+    </svg>
+
+    <!-- Isometric block with hidden lines and a bored hole -->
+    <svg class="decor-iso" viewBox="0 0 170 170" fill="none" stroke="currentColor" stroke-width="1">
+        <path d="M85,140 L137,110 L137,70 L85,100 Z"/>
+        <path d="M85,140 L47,118 L47,78 L85,100"/>
+        <path d="M85,100 L137,70"/>
+        <path d="M137,70 L99,48 L47,78"/>
+        <!-- hidden edges -->
+        <path d="M137,110 L99,88 L47,118 M99,88 L99,48" stroke-width="0.75" stroke-dasharray="5 3"/>
+        <!-- bored hole on top face -->
+        <ellipse cx="92" cy="74" rx="13" ry="7.5"/>
+        <text x="52" y="162" font-size="8.5" stroke="none">DO NOT SCALE</text>
+    </svg>
 </div>

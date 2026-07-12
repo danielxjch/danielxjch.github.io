@@ -49,6 +49,7 @@ html {
 }
 
 body {
+    position: relative; /* anchors .sheet-decor to the full document */
     margin: 0;
     font-family: var(--font-body);
     font-size: var(--step-body);
@@ -77,10 +78,10 @@ body::before {
     opacity: 0.55;
 }
 
-/* GD&T marginalia — faint part-drawing linework fixed to the sheet,
-   sitting in the page margins behind the content */
+/* GD&T marginalia — faint part-drawing linework drawn on the sheet,
+   sitting in the page margins behind the content; scrolls with the page */
 .sheet-decor {
-    position: fixed;
+    position: absolute;
     inset: 0;
     z-index: -1;
     pointer-events: none;
@@ -100,15 +101,29 @@ body::before {
 }
 
 .sheet-decor .decor-flange {
-    top: 12vh;
+    top: 130px;
     right: clamp(8px, 1.5vw, 40px);
     width: 220px;
 }
 
 .sheet-decor .decor-section {
-    bottom: 10vh;
+    top: 590px;
     left: clamp(8px, 1.5vw, 40px);
     width: 190px;
+}
+
+/* lower-sheet clusters — percentage-anchored so every page length
+   keeps some marginalia past the first screen */
+.sheet-decor .decor-detail {
+    top: 46%;
+    right: clamp(12px, 2vw, 48px);
+    width: 150px;
+}
+
+.sheet-decor .decor-iso {
+    top: 76%;
+    left: clamp(12px, 2vw, 48px);
+    width: 150px;
 }
 
 /* below ~1400px the sheet margins are too narrow for the drawings —
