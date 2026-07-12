@@ -1,0 +1,66 @@
+<div class="sheet-decor" aria-hidden="true">
+    <!-- Flange, front view: bolt circle, center lines, datum A, position FCF -->
+    <svg class="decor-flange" viewBox="0 0 260 300" fill="none" stroke="currentColor" stroke-width="1">
+        <circle cx="110" cy="120" r="70"/>
+        <circle cx="110" cy="120" r="28"/>
+        <circle cx="110" cy="120" r="49" stroke-width="0.75" stroke-dasharray="12 3 3 3"/>
+        <circle cx="75.4" cy="85.4" r="7"/>
+        <circle cx="144.6" cy="85.4" r="7"/>
+        <circle cx="75.4" cy="154.6" r="7"/>
+        <circle cx="144.6" cy="154.6" r="7"/>
+        <line x1="110" y1="36" x2="110" y2="204" stroke-width="0.75" stroke-dasharray="16 4 4 4"/>
+        <line x1="26" y1="120" x2="194" y2="120" stroke-width="0.75" stroke-dasharray="16 4 4 4"/>
+        <!-- diameter leader -->
+        <line x1="163.6" y1="75" x2="196" y2="48"/>
+        <line x1="196" y1="48" x2="252" y2="48"/>
+        <polygon points="163.6,75 171.1,71.6 168.3,68.2" fill="currentColor" stroke="none"/>
+        <text x="198" y="43" font-size="11" stroke="none">&#216;140.0</text>
+        <!-- datum feature A -->
+        <polygon points="110,190 104.5,199 115.5,199" fill="currentColor" stroke="none"/>
+        <line x1="110" y1="199" x2="110" y2="212"/>
+        <rect x="99" y="212" width="22" height="22"/>
+        <text x="110" y="227.5" font-size="12" text-anchor="middle" stroke="none">A</text>
+        <!-- feature control frame: position | Ø0.25 | A | B -->
+        <rect x="63" y="254" width="26" height="24"/>
+        <rect x="89" y="254" width="60" height="24"/>
+        <rect x="149" y="254" width="24" height="24"/>
+        <rect x="173" y="254" width="24" height="24"/>
+        <circle cx="76" cy="266" r="6"/>
+        <line x1="67" y1="266" x2="85" y2="266"/>
+        <line x1="76" y1="257" x2="76" y2="275"/>
+        <text x="119" y="270.5" font-size="11" text-anchor="middle" stroke="none">&#216;0.25</text>
+        <text x="161" y="270.5" font-size="11" text-anchor="middle" stroke="none">A</text>
+        <text x="185" y="270.5" font-size="11" text-anchor="middle" stroke="none">B</text>
+        <text x="63" y="296" font-size="9" stroke="none">SCALE 1:2</text>
+    </svg>
+
+    <!-- Bracket, sectioned side view: hatching, dims, R callout, finish mark, datum B -->
+    <svg class="decor-section" viewBox="0 0 240 310" fill="none" stroke="currentColor" stroke-width="1">
+        <defs>
+            <pattern id="dec-hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="0.7"/>
+            </pattern>
+        </defs>
+        <path d="M60,60 L150,60 L150,90 L96,90 A6,6 0 0 0 90,96 L90,220 L60,220 Z" fill="url(#dec-hatch)"/>
+        <!-- overall height dimension -->
+        <line x1="152" y1="60" x2="188" y2="60" stroke-width="0.75"/>
+        <line x1="92" y1="220" x2="188" y2="220" stroke-width="0.75"/>
+        <line x1="181" y1="60" x2="181" y2="220" stroke-width="0.75"/>
+        <polygon points="181,60 178.8,68 183.2,68" fill="currentColor" stroke="none"/>
+        <polygon points="181,220 178.8,212 183.2,212" fill="currentColor" stroke="none"/>
+        <text x="176" y="140" font-size="11" text-anchor="middle" transform="rotate(-90 176 140)" stroke="none">160.0</text>
+        <!-- fillet radius leader -->
+        <line x1="93.6" y1="94.5" x2="130" y2="128"/>
+        <polygon points="93.6,94.5 101,98.3 98,101.5" fill="currentColor" stroke="none"/>
+        <text x="133" y="132" font-size="11" stroke="none">R6.0</text>
+        <!-- surface finish -->
+        <path d="M112,44 L118,60 L128,34"/>
+        <text x="131" y="40" font-size="10" stroke="none">1.6</text>
+        <!-- datum feature B -->
+        <polygon points="75,220 69.5,229 80.5,229" fill="currentColor" stroke="none"/>
+        <line x1="75" y1="229" x2="75" y2="242"/>
+        <rect x="64" y="242" width="22" height="22"/>
+        <text x="75" y="257.5" font-size="12" text-anchor="middle" stroke="none">B</text>
+        <text x="60" y="296" font-size="9" stroke="none">SECTION C-C</text>
+    </svg>
+</div>

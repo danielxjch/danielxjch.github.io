@@ -77,6 +77,48 @@ body::before {
     opacity: 0.55;
 }
 
+/* GD&T marginalia — faint part-drawing linework fixed to the sheet,
+   sitting in the page margins behind the content */
+.sheet-decor {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    color: var(--muted-color);
+    opacity: 0.35;
+}
+
+.sheet-decor svg {
+    position: absolute;
+    display: block;
+}
+
+.sheet-decor text {
+    font-family: var(--font-mono);
+    fill: currentColor;
+    letter-spacing: 0.06em;
+}
+
+.sheet-decor .decor-flange {
+    top: 12vh;
+    right: clamp(8px, 1.5vw, 40px);
+    width: 220px;
+}
+
+.sheet-decor .decor-section {
+    bottom: 10vh;
+    left: clamp(8px, 1.5vw, 40px);
+    width: 190px;
+}
+
+/* below ~1400px the sheet margins are too narrow for the drawings —
+   they collide with full-width heroes and read as glitches, so hide */
+@media (max-width: 1399px) {
+    .sheet-decor {
+        display: none;
+    }
+}
+
 h1, h2, h3, h4 {
     line-height: 1.15;
     margin: 0 0 0.6em;
