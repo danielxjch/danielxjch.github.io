@@ -1,37 +1,25 @@
-<!-- _includes/nav.html -->
 <nav>
     <div class="left">
-        <a href="/">{{site.name}}</a>
+        <a href="/">{{ site.name }}</a>
     </div>
 
     <!-- Desktop Menu -->
     <div class="right desktop-nav">
-        <a href="/">
-            <span>Home</span>
-        </a>
-        <a href="/projects/">
-            <span>Projects</span>
-        </a>
-        <a href="{{site.resume-url}}" target="_blank" rel="noopener noreferrer">
-            <span>Resume</span>
-        </a>
+        <a href="/" class="mono-link">Home</a>
+        <a href="/projects/" class="mono-link">Projects</a>
+        <a href="{{ site.resume-url }}" target="_blank" rel="noopener noreferrer" class="mono-link">Resume ↗</a>
     </div>
 
     <!-- Mobile Menu Button -->
     <button class="menu-toggle" aria-label="Toggle menu">
-        <i class="fa fa-bars fa-2x"></i>
+        <span class="bar"></span>
+        <span class="bar"></span>
     </button>
 
     <!-- Mobile Menu -->
     <div class="mobile-nav">
-        <a href="/">
-            <span>Home</span>
-        </a>
-        <a href="/projects/">
-            <span>Projects</span>
-        </a>
-        <a href="{{site.resume-url}}" target="_blank" rel="noopener noreferrer">
-            <span>Resume</span>
-        </a>
+        <a href="/" class="mono-link">Home</a>
+        <a href="/projects/" class="mono-link">Projects</a>
+        <a href="{{ site.resume-url }}" target="_blank" rel="noopener noreferrer" class="mono-link">Resume ↗</a>
     </div>
 </nav>

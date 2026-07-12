@@ -1,0 +1,11 @@
+{%- comment -%}
+Numbered drawing-section heading.
+Usage: {% raw %}{% include section-heading.html letter="A" title="Projects" id="projects" %}{% endraw %}
+{%- endcomment -%}
+<div class="section-heading"{% if include.id %} id="{{ include.id }}-heading"{% endif %}>
+    <span class="callout">Section {{ include.letter }}</span>
+    <div class="row">
+        <h2>{{ include.title }}</h2>
+        <span class="rule" aria-hidden="true"></span>
+    </div>
+</div>

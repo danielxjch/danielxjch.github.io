@@ -1,0 +1,26 @@
+{%- comment -%}
+Social links rendered as mono text links (drafting-sheet style, no icon fonts).
+Driven by the same site.external-links slugs as before.
+{%- endcomment -%}
+{% if site.external-links %}
+<div class="external-links">
+    {% assign platforms = "linkedin,github,stackoverflow,medium,x-twitter,threads,instagram,youtube,discord,bluesky" | split: "," %}
+    {% for platform in platforms %}
+        {% assign slug = site.external-links[platform] %}
+        {% if slug %}
+            {% case platform %}
+            {% when 'linkedin' %}<a class="mono-link" href="https://www.linkedin.com/in/{{ slug }}/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            {% when 'github' %}<a class="mono-link" href="https://github.com/{{ slug }}/" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            {% when 'stackoverflow' %}<a class="mono-link" href="https://stackoverflow.com/users/{{ slug }}/" target="_blank" rel="noopener noreferrer">Stack Overflow ↗</a>
+            {% when 'medium' %}<a class="mono-link" href="https://medium.com/@{{ slug }}/" target="_blank" rel="noopener noreferrer">Medium ↗</a>
+            {% when 'x-twitter' %}<a class="mono-link" href="https://x.com/{{ slug }}/" target="_blank" rel="noopener noreferrer">X ↗</a>
+            {% when 'threads' %}<a class="mono-link" href="https://threads.net/@{{ slug }}/" target="_blank" rel="noopener noreferrer">Threads ↗</a>
+            {% when 'instagram' %}<a class="mono-link" href="https://instagram.com/{{ slug }}/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+            {% when 'youtube' %}<a class="mono-link" href="https://youtube.com/@{{ slug }}/" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+            {% when 'discord' %}<a class="mono-link" href="https://discord.com/users/{{ slug }}/" target="_blank" rel="noopener noreferrer">Discord ↗</a>
+            {% when 'bluesky' %}<a class="mono-link" href="https://bsky.app/profile/{{ slug }}/" target="_blank" rel="noopener noreferrer">Bluesky ↗</a>
+            {% endcase %}
+        {% endif %}
+    {% endfor %}
+</div>
+{% endif %}

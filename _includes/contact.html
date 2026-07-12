@@ -1,20 +1,14 @@
-<!-- SECTION 4: Contact-->
-<section id="contact" class= "contact-section">
-    <h2>Contact</h2>
+<div class="group">
+    <form action="https://formspree.io/f/{{ site.formspree-key }}" method="POST">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" autocomplete="name">
 
-    <div class="group">
-      
-        <form action="https://formspree.io/f/{{site.formspree-key}}" method="POST">
-            <label for="name">Name</label>
-            <input type="text" id="name">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
 
-            <label for="message">Message</label>
-            <textarea id="message" cols = "30" rows="10" name="message"></textarea>
-
-            <button type="submit">Send Message</button>
-        </form>
-    </div>
-  </section>
+        <button type="submit" class="btn">Send message</button>
+    </form>
+</div>

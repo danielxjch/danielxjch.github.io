@@ -1,15 +1,24 @@
 <footer>
-    <div class="footer-content">
-        <div class="links">
-            <a href="/">
-                <span>Home</span>
-            </a>
-            <a href="/projects/">
-                <span>Projects</span>
-            </a>
-            <a href={{site.resume-url}} target="_blank" rel="noopener noreferrer">
-                <span>Resume</span>
-            </a>
+    <div class="title-block">
+        <div class="tb-cell">
+            <span class="tb-label">Title</span>
+            <span class="tb-value">Portfolio — {{ site.name }}</span>
+        </div>
+        <div class="tb-cell">
+            <span class="tb-label">Drawn by</span>
+            <span class="tb-value">{{ site.name | split: ' ' | first }}</span>
+        </div>
+        <div class="tb-cell">
+            <span class="tb-label">Rev</span>
+            <span class="tb-value">{{ site.time | date: '%Y.%m' }}</span>
+        </div>
+        <div class="tb-cell">
+            <span class="tb-label">Sheets</span>
+            <span class="tb-value">
+                <a href="/">Home</a> /
+                <a href="/projects/">Projects</a> /
+                <a href="{{ site.resume-url }}" target="_blank" rel="noopener noreferrer">Resume</a>
+            </span>
         </div>
     </div>
 </footer>

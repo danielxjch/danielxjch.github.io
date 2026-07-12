@@ -1,8 +1,15 @@
 ---
-
 layout: wrapper
+title: Projects
 permalink: /projects/
-
 ---
 
-{% include projects.html%}
+<section class="project-grid-section">
+    <div class="page-header">
+        <span class="breadcrumb">Index / Projects</span>
+        <h1>All Projects</h1>
+        <span class="mono-label">{{ site.projects | size }} sheets on file</span>
+    </div>
+
+    {% include projects.html %}
+</section>

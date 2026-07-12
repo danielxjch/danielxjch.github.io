@@ -1,20 +1,20 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: wrapper
 ---
 
-{% include hero.html%}
+{% include hero.html %}
 
+<section id="projects" class="project-grid-section">
+    {% include section-heading.html letter="A" title="Projects" %}
+    {% include projects.html %}
+</section>
 
+<section id="skills" class="skills-section">
+    {% include section-heading.html letter="B" title="Skills" %}
+    {% include skills.html %}
+</section>
 
-<div class="arrow"> 
-    <a href="#projects">
-        More About Me
-    <i class="fa-solid fa-angles-down"></i>
-    </a> 
-</div>
-{% include projects.html%}
-{% include skills.html%}
-{% include contact.html%}
+<section id="contact" class="contact-section">
+    {% include section-heading.html letter="C" title="Contact" %}
+    {% include contact.html %}
+</section>
