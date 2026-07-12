@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Go2 Quarduped Navigation
+title: Go2 Quadruped Navigation
 description:  Implemented an ego-circle/cylinder based navigation strategy for the Go2 quadruped robot using ROS2. Developed custom Gazebo environments to evaluate LiDAR performance across varied obstacles, visualized simulation results in RViz, and designed SolidWorks mounts for third party computing hardware and sensors.
 skills: 
   - ROS
