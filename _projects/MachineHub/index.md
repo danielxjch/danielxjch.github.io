@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SANY Machine Hub
-description: Full-stack web platform built end-to-end during my work term at SANY America — replacing SANY America's Excel-based Total Cost of Ownership workflow with a production web app. Customer-facing machine hub with a TCO calculator, market comparisons, maintenance planning, and branded PDF reports, backed by an internal admin system for data entry, roles, and auditing. Next.js + TypeScript + PostgreSQL, deployed on Vercel and in production use.
+description: Full-stack web platform built end-to-end during my work term at SANY America — I developed a Total Cost of Ownership model from scratch in Excel, then productionized it as a web app. Customer-facing machine hub with a TCO calculator, market comparisons, maintenance planning, and branded PDF reports, backed by an internal admin system for data entry, roles, and auditing. Next.js + TypeScript + PostgreSQL, deployed on Vercel and in production use.
 skills:
   - TypeScript
   - React / Next.js
@@ -17,7 +17,7 @@ main-image: /hub-home.jpg
 
 ---
 ## Total Cost of Ownership Calculator
-The core of the platform: users build an ownership scenario (years, hours, price, financing, fuel, labor) and get a complete hourly, yearly, and lifetime cost picture, computed live by a pure TypeScript calculation engine that replaced a suite of legacy Excel workbooks. Depreciation is modeled from historical resale data, so the projected residual value reflects how these machines actually hold value in the field.
+The core of the platform: users build an ownership scenario (years, hours, price, financing, fuel, labor) and get a complete hourly, yearly, and lifetime cost picture, computed live by a pure TypeScript calculation engine. I built and validated the underlying cost model in Excel first, then ported it to the app. Depreciation is modeled from historical resale data, so the projected residual value reflects how these machines actually hold value in the field.
 {% include image-gallery.html images="hub-tco-hero.png" height="810" %}
 *Some dollar figures are redacted; scenario inputs shown are illustrative examples, not quotes.*
 
@@ -51,7 +51,7 @@ A full internal system that lets non-technical staff run the platform. The model
 The rest is sensitive enough to describe rather than show:
 
 - **Model editors** — machine setup, spec templates, maintenance schedules, warranty records, resale/auction data, comparison rows, lifting performance, and per-model documents
-- **Excel import pipeline** — migrated the legacy workbooks into the database, including a server-side curve-refit that replaced Excel Solver
+- **Excel import pipeline** — migrated my original Excel model into the database, including a server-side curve-refit that replaced Excel Solver
 - **Role-based access** — six user roles (owner → customer) with a per-role permission matrix controlling every tab, chart, and figure on the customer side
 - **User management & audit log** — account administration with an append-only audit trail of admin actions
 - **PDF reports** — any scenario prints to a SANY-branded customer report with figures, charts, and a methodology appendix
