@@ -5,16 +5,19 @@ layout: wrapper
 {% include hero.html %}
 
 <section id="projects" class="project-grid-section">
+    {% include decor/projects.html %}
     {% include section-heading.html letter="A" title="Projects" %}
     {% include projects.html %}
 </section>
 
 <section id="skills" class="skills-section">
+    {% include decor/skills.html %}
     {% include section-heading.html letter="B" title="Skills" %}
     {% include skills.html %}
 </section>
 
 <section id="contact" class="contact-section">
+    {% include decor/contact.html %}
     {% include section-heading.html letter="C" title="Contact" %}
     {% include contact.html %}
 </section>
