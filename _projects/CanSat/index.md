@@ -12,6 +12,7 @@ skills:
   - Signal Processing
 
 main-image: /CanSat_extended2.png
+decor: cansat
 ---
 {% include image-gallery.html images="CanSat_main.png" height="700" %}
 ---

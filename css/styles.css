@@ -113,180 +113,292 @@ body::before {
 }
 
 /* one pencil throughout (reference: blue-pencil concept sheet);
-   phases differ by looseness, not by medium */
+   pressure hierarchy lives in per-path stroke-opacity, so the
+   drawings can sit darker overall without going flat */
 .decor-sketch {
     color: var(--muted-color);
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .decor-cad {
     color: var(--muted-color);
-    opacity: 0.68;
+    opacity: 0.75;
 }
 
-/* lighter construction / overdraw passes */
+/* construction / overdraw passes carry their own stroke-opacity */
 .section-decor .dec-ghost {
-    opacity: 0.45;
+    opacity: 1;
 }
 
-/* accent appears only on the kinematic study: input arc + coupler path */
+/* blue accent is reserved for motion: input arc, coupler path,
+   deployment arcs, planned path */
 .fb-arc {
     stroke: var(--highlight-color);
 }
 
-.fb-traj {
+.fb-traj,
+.cs-arc,
+.go-path,
+.ex-arc {
     stroke: var(--highlight-color);
     stroke-width: 1.4;
     opacity: 0.6;
     stroke-dasharray: 100; /* with pathLength=100: solid when offset is 0 */
 }
 
-/* --- placement: big, central, allowed to run under content --- */
+/* the rosin line loop: an accent dashed overlay whose offset the
+   scroll driver animates, showing the line travelling around the
+   two same-side motor wheels */
+.vs-flow {
+    stroke: var(--highlight-color);
+    stroke-width: 1.5;
+    opacity: 0.7;
+    stroke-dasharray: 7 11;
+}
+
+/* ------------------------------------------------------------
+   QUIET ZONES — paper-colored halos keep body copy readable while
+   the drawings run underneath; cards and photos clip them outright
+   ------------------------------------------------------------ */
+.hero-section .text,
+.page-header,
+.post-view .summary,
+.contact-section .group,
+.post-view .content p,
+.post-view .content h2,
+.post-view .content h3,
+.post-view .content ul,
+.post-view .content ol {
+    position: relative;
+}
+
+.hero-section .text::before,
+.page-header::before,
+.post-view .summary::before,
+.contact-section .group::before,
+.post-view .content p::before,
+.post-view .content h2::before,
+.post-view .content h3::before,
+.post-view .content ul::before,
+.post-view .content ol::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -0.6rem -1.25rem;
+    background: var(--background-color);
+    opacity: 0.78;
+    box-shadow: 0 0 30px 22px var(--background-color);
+    pointer-events: none;
+}
+
+/* the hero copy sits on the centerpiece sketch — quieter mask so
+   the drawing still reads through around the text */
+.hero-section .text::before {
+    opacity: 0.6;
+    box-shadow: 0 0 24px 16px var(--background-color);
+}
+
+/* --- placement: dominant studies mid-sheet, content overlaps them --- */
 
 /* hero centerpiece: leg concept sketch across the middle of the sheet */
 .decor-hero-main {
-    left: calc(50% - 345px);
-    top: 14px;
-    width: min(690px, 94vw);
-    opacity: 0.52; /* sits under the hero copy — bold lines, quiet tone */
+    left: calc(50% - 470px);
+    top: 30px;
+    width: min(860px, 96vw);
+    opacity: 0.68; /* halo under the copy keeps it readable */
 }
 
 .decor-h2 {
-    left: calc(100% - 70px);
+    left: calc(100% - 80px);
     top: 330px;
-    width: 180px;
+    width: 190px;
 }
 
 /* kinematic study fills the open cell of the project grid; the crank
    articulates around its fixed pivots as the section scrolls */
 .decor-linkage {
-    left: 60%;
-    top: 42%;
-    width: 540px;
-    opacity: 0.62;
+    left: 54%;
+    top: 34%;
+    width: 640px;
+    opacity: 0.72;
 }
 
 .decor-p2 {
-    left: -120px;
-    top: 90px;
-    width: 220px;
+    left: -140px;
+    top: 70px;
+    width: 260px;
 }
 
-.decor-s1 {
-    right: -70px;
-    top: -30px;
-    width: 300px;
+/* skills: orthographic construction dominates the right half,
+   running under the skills cards */
+.decor-ortho {
+    right: -80px;
+    top: -40px;
+    width: min(620px, 52vw);
+    opacity: 0.72;
 }
 
-.decor-s2 {
-    left: -90px;
-    top: auto;
-    bottom: -60px;
-    width: 300px;
-}
-
+/* contact: issue block to the right of the form */
 .decor-c1 {
-    left: 62%;
-    top: 30px;
-    width: 280px;
+    left: 56%;
+    top: 10px;
+    width: 420px;
+    opacity: 0.75;
 }
 
-.pm-detail {
-    left: calc(100% - 50px);
-    top: 60px;
-    width: 200px;
+/* Project pages: one dominant asset-derived study per page, drawn on
+   the sheet BEHIND all content (like the homepage sections). It sits in
+   the right gutter, dropped well below the summary so it reads beside the
+   galleries/body while the reader is there — photos and captions overlap
+   it for depth, but it is never cropped or run through the copy. */
+.post-view > .section-decor {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
 }
 
-.pm-iso {
-    left: -70px;
-    top: 1100px;
-    width: 220px;
+.decor-cansat {
+    right: -60px;
+    top: 720px;
+    width: min(420px, 34vw);
 }
 
-/* narrow sheets: keep the centerpiece and study, quiet them down */
+.decor-go2 {
+    right: -60px;
+    top: 800px;
+    width: min(460px, 36vw);
+}
+
+.decor-violin {
+    right: -20px;
+    top: 720px;
+    width: min(540px, 42vw);
+}
+
+.decor-machinehub {
+    right: -60px;
+    top: 1420px;
+    width: min(380px, 30vw);
+}
+
+/* SANY builds excavators (see the hero photo); the boom study drops
+   below the full-width lead image into the right gutter, beside the
+   narrower centred content, where it reads and articulates on scroll. */
+.decor-excavator {
+    right: -40px;
+    top: 960px;
+    width: min(460px, 36vw);
+    opacity: 0.85;
+}
+
+.decor-index {
+    right: -20px;
+    top: 10px;
+    width: 300px;
+    opacity: 0.7;
+}
+
+/* narrow sheets: keep the dominant studies, quiet them down */
 @media (max-width: 1359px) {
     .decor-h2,
-    .decor-p2,
-    .decor-s2,
-    .pm-iso {
+    .decor-p2 {
         display: none;
     }
 
     .decor-hero-main {
-        left: calc(50% - 290px);
-        width: min(580px, 72vw);
-        opacity: 0.34;
+        left: calc(50% - 360px);
+        width: min(720px, 82vw);
+        opacity: 0.45;
     }
 
     .decor-linkage {
-        left: 52%;
-        width: min(480px, 46vw);
-        opacity: 0.4;
+        left: 50%;
+        width: min(520px, 48vw);
+        opacity: 0.5;
     }
 
-    .decor-s1 {
-        right: 0;
-        top: -20px;
-        width: 220px;
-        opacity: 0.32;
+    .decor-ortho {
+        right: -20px;
+        width: min(460px, 42vw);
+        opacity: 0.5;
     }
 
     .decor-c1 {
         left: auto;
         right: 0;
-        top: 10px;
-        width: 230px;
-        opacity: 0.34;
+        width: 340px;
+        opacity: 0.55;
     }
 
-    .pm-detail {
-        left: auto;
-        right: 0;
-        width: 150px;
-        opacity: 0.28;
-    }
+    .decor-index { width: 240px; opacity: 0.5; }
+
+    .decor-cansat { width: min(340px, 34vw); opacity: 0.7; }
+    .decor-go2 { width: min(380px, 38vw); opacity: 0.7; }
+    .decor-violin { width: min(400px, 40vw); opacity: 0.7; }
+    .decor-machinehub { width: min(320px, 32vw); opacity: 0.7; }
+    .decor-excavator { width: min(360px, 36vw); opacity: 0.72; }
 }
 
 @media (max-width: 1023px) {
-    .decor-linkage,
-    .post-decor {
+    .decor-linkage {
         display: none;
     }
 
     .decor-hero-main {
-        left: calc(50% - 230px);
-        width: min(460px, 64vw);
-        opacity: 0.3;
+        left: calc(50% - 270px);
+        width: min(540px, 70vw);
+        opacity: 0.4;
     }
 
-    .decor-s1 {
-        width: 190px;
-        opacity: 0.3;
+    .decor-ortho {
+        top: auto;
+        bottom: -40px;
+        width: min(360px, 44vw);
+        opacity: 0.42;
     }
 
     .decor-c1 {
-        width: 200px;
-        opacity: 0.32;
+        width: 280px;
+        opacity: 0.5;
     }
+
+    .decor-index { width: 200px; opacity: 0.45; }
+
+    .decor-cansat { right: -30px; width: min(300px, 40vw); opacity: 0.6; }
+    .decor-go2 { right: -30px; width: min(340px, 44vw); opacity: 0.6; }
+    .decor-violin { right: -30px; width: min(360px, 46vw); opacity: 0.6; }
+    .decor-machinehub { right: -30px; width: min(300px, 40vw); opacity: 0.6; }
+    .decor-excavator { right: -20px; width: min(340px, 44vw); opacity: 0.62; }
 }
 
 @media (max-width: 767px) {
-    .decor-s1 {
+    .decor-ortho,
+    .decor-index {
         display: none;
     }
 
     .decor-hero-main {
         left: auto;
-        right: -20px;
+        right: -16px;
         top: 0;
-        width: 230px;
-        opacity: 0.38;
+        width: 280px;
+        opacity: 0.5;
     }
 
     .decor-c1 {
-        width: 120px;
-        opacity: 0.35;
+        width: 170px;
+        top: 0;
+        opacity: 0.5;
     }
+
+    /* project studies sit in the right gutter behind the body copy,
+       quiet and low so the drawing reads without fighting the text.
+       Kept flush to the edge so nothing bleeds past the viewport. */
+    .decor-cansat { right: -6px; top: 620px; width: 205px; opacity: 0.5; }
+    .decor-go2 { right: -6px; top: 640px; width: 235px; opacity: 0.5; }
+    .decor-violin { right: -6px; top: 640px; width: 245px; opacity: 0.5; }
+    .decor-machinehub { right: -6px; top: 900px; width: 205px; opacity: 0.5; }
+    .decor-excavator { right: -6px; top: 760px; width: 225px; opacity: 0.55; }
 
     /* labels are illegible this small — keep only linework */
     .section-decor text {
@@ -1201,12 +1313,23 @@ footer {
 }
 
 .js .decor-trace.is-drawn .dec-ghost {
-    opacity: 0.45;
+    opacity: 1; /* per-path stroke-opacity keeps these light */
 }
 
-/* coupler trajectory stays hidden until the scroll driver writes
-   its offset, so the curve is drawn by the visitor's own scrolling */
-.js .decor-linkage .fb-traj {
+/* the planned path draws in last, after the scan has appeared */
+.js .decor-trace .go-path {
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 1.3s cubic-bezier(0.4, 0, 0.2, 1) 1s;
+}
+
+.js .decor-trace.is-drawn .go-path {
+    stroke-dashoffset: 0;
+}
+
+/* scroll-driven curves stay hidden until their driver writes an
+   offset: the visitor's own scrolling draws them */
+.js .decor-linkage .fb-traj,
+.js .decor-cansat .cs-arc {
     stroke-dashoffset: 100;
 }
 
@@ -1302,10 +1425,12 @@ footer {
     }
 
     .js .decor-trace .dec-ghost {
-        opacity: 0.45;
+        opacity: 1;
     }
 
-    .js .decor-linkage .fb-traj {
+    .js .decor-linkage .fb-traj,
+    .js .decor-cansat .cs-arc,
+    .js .decor-trace .go-path {
         stroke-dashoffset: 0;
     }
 }

@@ -10,6 +10,7 @@ skills:
   - Laser Cutting
 
 main-image: /violin.png
+decor: violin
 ---
 ---
 ## CAD

@@ -5,6 +5,39 @@ document.addEventListener('DOMContentLoaded', function () {
     initReveal(reduceMotion);
     initDecorTrace(reduceMotion);
     initLinkage(reduceMotion);
+    initCansat(reduceMotion);
+    initExcavator(reduceMotion);
+    initBow(reduceMotion);
+
+    // 0..1 progress of a section through the viewport (symmetric both
+    // scroll directions, stable under fast scroll: pure function of layout)
+    function sectionProgress(el) {
+        const rect = el.getBoundingClientRect();
+        const total = rect.height + window.innerHeight;
+        return Math.min(1, Math.max(0, (window.innerHeight - rect.top) / total));
+    }
+
+    // shared scroll driver: rAF-throttled, gated by an IO on the svg
+    function driveOnScroll(svg, update) {
+        let active = false;
+        let ticking = false;
+
+        function onScroll() {
+            if (!active || ticking) return;
+            ticking = true;
+            requestAnimationFrame(function () { ticking = false; update(); });
+        }
+
+        new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                active = entry.isIntersecting && svg.getClientRects().length > 0;
+                if (active) update();
+            });
+        }).observe(svg);
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+    }
 
     // Mobile menu
     function initMenu() {
@@ -99,9 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const T_MIN = 25 * Math.PI / 180, T_MAX = 155 * Math.PI / 180;
         const DEG = 180 / Math.PI;
 
-        let active = false;
-        let ticking = false;
-
         function setPose(t2) {
             const ax = O2X + R2 * Math.cos(t2);
             const ay = O2Y + R2 * Math.sin(t2);
@@ -121,28 +151,110 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function update() {
-            ticking = false;
-            const rect = section.getBoundingClientRect();
-            const total = rect.height + window.innerHeight;
-            const p = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / total));
+            const p = sectionProgress(section);
             setPose(T_MIN + p * (T_MAX - T_MIN));
             traj.style.strokeDashoffset = 100 - p * 100;
         }
 
-        function onScroll() {
-            if (!active || ticking) return;
-            ticking = true;
-            requestAnimationFrame(update);
+        driveOnScroll(svg, update);
+    }
+
+    // CanSat deployment: confirmed sequence only — the cover lifts off
+    // along the axis, then torsion springs rotate the arms outward
+    // around their hinges. Baked SVG pose = deployed (no-JS state).
+    function initCansat(reduceMotion) {
+        const svg = document.querySelector('.decor-cansat');
+
+        if (!svg || reduceMotion) return;
+
+        const cover = svg.querySelector('.cs-cover');
+        const armL = svg.querySelector('.cs-arm-l');
+        const armR = svg.querySelector('.cs-arm-r');
+        const arcs = svg.querySelectorAll('.cs-arc');
+
+        if (!cover || !armL || !armR) return;
+
+        if (!('IntersectionObserver' in window)) {
+            arcs.forEach(function (a) { a.style.strokeDashoffset = 0; });
+            return;
         }
 
-        new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                active = entry.isIntersecting && svg.getClientRects().length > 0;
-                if (active) update();
-            });
-        }).observe(svg);
+        // hinge points in viewBox units (must match gen-sketch.js:
+        // body centre x=200, radius 36, hinge y=230)
+        const HLX = 168, HRX = 232, HY = 230;
+        const COVER_LIFT = -170, ARM_FOLD = 92;
 
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll, { passive: true });
+        function update() {
+            // the study's own travel through the viewport is the timeline,
+            // so the deployment plays while the drawing is on screen
+            const p = sectionProgress(svg);
+            const c = Math.min(1, Math.max(0, (p - 0.15) / 0.28));        // cover off first
+            const q = Math.min(1, Math.max(0, (p - 0.38) / 0.34));        // then arms swing
+            cover.setAttribute('transform', 'translate(0 ' + (COVER_LIFT * c) + ')');
+            armL.setAttribute('transform', 'rotate(' + (-ARM_FOLD * (1 - q)) + ' ' + HLX + ' ' + HY + ')');
+            armR.setAttribute('transform', 'rotate(' + (ARM_FOLD * (1 - q)) + ' ' + HRX + ' ' + HY + ')');
+            arcs.forEach(function (a) { a.style.strokeDashoffset = 100 - q * 100; });
+        }
+
+        update();
+        driveOnScroll(svg, update);
+    }
+
+    // SANY excavator: nested SVG groups make each child move in its
+    // parent's coordinate system, preserving the real boom/stick/bucket joints.
+    function initExcavator(reduceMotion) {
+        const svg = document.querySelector('.decor-excavator');
+        if (!svg) return;
+
+        const boom = svg.querySelector('.ex-boom');
+        const stick = svg.querySelector('.ex-stick');
+        const bucket = svg.querySelector('.ex-bucket');
+        if (!boom || !stick || !bucket) return;
+
+        function setPose(p) {
+            const cycle = 0.5 - 0.5 * Math.cos(p * Math.PI * 2);
+            boom.setAttribute('transform', 'rotate(' + (-10 + cycle * 22) + ' 185 220)');
+            stick.setAttribute('transform', 'rotate(' + (16 - cycle * 38) + ' 310 98)');
+            bucket.setAttribute('transform', 'rotate(' + (-18 + cycle * 52) + ' 369 211)');
+        }
+
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+            setPose(0.5);
+            return;
+        }
+
+        function update() { setPose(sectionProgress(svg)); }
+        update();
+        driveOnScroll(svg, update);
+    }
+
+    // Robotic violin bowing: a continuous rosin-coated fishing-line LOOP
+    // runs around two motor wheels mounted together on ONE side. Both
+    // wheels spin the same way, driving the loop so its runs travel
+    // across the strings (perpendicular contact). Nothing slides or
+    // straddles the strings — the surface of the loop is what moves.
+    function initBow(reduceMotion) {
+        const svg = document.querySelector('.decor-violin');
+
+        if (!svg) return;
+
+        const flow = svg.querySelector('.vs-flow');
+        const wheelA = svg.querySelector('.vs-wheel-a');
+        const wheelB = svg.querySelector('.vs-wheel-b');
+        if (!flow || !wheelA || !wheelB) return;
+
+        if (reduceMotion || !('IntersectionObserver' in window)) return;
+
+        function update() {
+            const p = sectionProgress(svg);
+            // dashes travel around the loop; both wheels drive it the
+            // same direction. Reverses cleanly when scrolling back up.
+            flow.style.strokeDashoffset = (-p * 260) + '';
+            wheelA.setAttribute('transform', 'rotate(' + (p * 540) + ' 326 150)');
+            wheelB.setAttribute('transform', 'rotate(' + (p * 540) + ' 368 150)');
+        }
+
+        update();
+        driveOnScroll(svg, update);
     }
 });

@@ -1,0 +1,66 @@
+<div class="section-decor" aria-hidden="true">
+    <!-- Robotic violin, top view (from violin.png + Violin CAD.PNG).
+         Confirmed bowing mechanism: a continuous rosin-coated fishing-line
+         LOOP wrapped around two motor wheels mounted TOGETHER on one side;
+         the loop's runs cross the strings at 90 degrees and travel
+         continuously. Not a wooden bow; wheels are not split across the
+         strings. vs-flow / vs-wheel-a / vs-wheel-b are driven by script.js. -->
+    <svg class="decor-violin decor-sketch decor-trace" viewBox="0 0 440 310" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <!-- body outline (two bouts + waist), pencil underlay + line -->
+        <path class="dec-ghost" stroke-width="0.85" stroke-opacity="0.4" d="M166 29 Q111 62 126 122 Q140 151 123 184 Q109 245 170 283 M274 29 Q329 62 314 122 Q300 151 317 184 Q331 245 270 283"/>
+        <path class="dec-line" pathLength="100" stroke-width="2.1" stroke-opacity="0.85" d="M174 30 Q126 58 136 112 Q143 139 128 174 Q117 232 174 274 M266 30 Q314 58 304 112 Q297 139 312 174 Q323 232 266 274"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.5" stroke-opacity="0.78" d="M174 30 Q198 43 220 42 Q242 43 266 30 M174 274 Q198 261 220 262 Q242 261 266 274"/>
+        <!-- f-holes -->
+        <path class="dec-line" pathLength="100" stroke-width="1.6" stroke-opacity="0.72" d="M198 150 Q189 132 196 116 M242 150 Q251 132 244 116"/>
+        <!-- strings, running lengthwise (vertical): the bowing line meets them at 90deg -->
+        <path class="dec-dim" pathLength="100" stroke-width="0.75" stroke-opacity="0.62" d="M208 40 V272 M216 40 V272 M224 40 V272 M232 40 V272"/>
+        <text x="150" y="46" font-size="9" stroke="none">STRINGS</text>
+        <path class="dec-dim" pathLength="100" stroke-width="0.75" d="M186 45 L206 58"/>
+        <!-- bridge -->
+        <path class="dec-line" pathLength="100" stroke-width="1.7" stroke-opacity="0.8" d="M203 150 H237"/>
+        <text x="150" y="250" font-size="8.5" stroke="none">BRIDGE</text>
+        <path class="dec-dim" pathLength="100" stroke-width="0.75" d="M176 247 L214 152"/>
+
+        <!-- rosin-coated fishing-line LOOP: a long stadium whose runs cross
+             the strings horizontally (90deg); both motor wheels sit at the
+             right end (same side of the bowing area). -->
+        <path class="dec-ghost" stroke-width="1" stroke-opacity="0.38" d="M120 132 H366 A18 18 0 0 1 366 168 H120 A18 18 0 0 1 120 132 Z"/>
+        <path class="vs-loop dec-line" pathLength="100" stroke-width="1.8" stroke-opacity="0.85" d="M120 134 H368 A16 16 0 0 1 368 166 H120 A16 16 0 0 1 120 134 Z"/>
+        <!-- accent: the travelling rosin line (offset animated on scroll) -->
+        <path class="vs-flow" d="M120 134 H368 A16 16 0 0 1 368 166 H120 A16 16 0 0 1 120 134 Z"/>
+
+        <!-- two motor wheels, mounted together on the right (same side) -->
+        <g class="vs-wheel vs-wheel-a">
+            <circle class="dec-ghost" stroke-width="0.9" stroke-opacity="0.45" cx="326" cy="150" r="18"/>
+            <circle class="dec-line" pathLength="100" stroke-width="2" stroke-opacity="0.86" cx="326" cy="150" r="15"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M326 137 V163 M313 150 H339"/>
+            <circle class="dec-arrow" cx="332" cy="142" r="1.9" fill="currentColor" stroke="none"/>
+        </g>
+        <g class="vs-wheel vs-wheel-b">
+            <circle class="dec-ghost" stroke-width="0.9" stroke-opacity="0.45" cx="368" cy="150" r="18"/>
+            <circle class="dec-line" pathLength="100" stroke-width="2" stroke-opacity="0.86" cx="368" cy="150" r="15"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M368 137 V163 M355 150 H381"/>
+            <circle class="dec-arrow" cx="374" cy="142" r="1.9" fill="currentColor" stroke="none"/>
+        </g>
+        <text x="300" y="118" font-size="8.5" stroke="none">MOTOR WHEELS</text>
+        <text x="300" y="128" font-size="8.5" stroke="none">— SAME SIDE</text>
+
+        <!-- 90-degree contact marker where the line crosses the strings -->
+        <path class="dec-dim" pathLength="100" stroke-width="0.9" d="M220 134 V128 H214"/>
+        <text x="150" y="126" font-size="8.5" stroke="none">90&#176; CONTACT</text>
+        <path class="dec-dim" pathLength="100" stroke-width="0.75" d="M186 123 L212 132"/>
+
+        <!-- continuous-travel arrows on the two runs -->
+        <path class="dec-arrow" stroke-width="1.15" d="M160 130 L152 134 L160 138"/>
+        <path class="dec-arrow" stroke-width="1.15" d="M300 162 L308 166 L300 170"/>
+        <text x="118" y="206" font-size="9" stroke="none">ROSIN-COATED FISHING-LINE LOOP</text>
+        <text x="118" y="219" font-size="8.5" stroke="none">CONTINUOUS TRAVEL &#8212; NO RESET</text>
+
+        <!-- fingering servos above the neck (from the build photo) -->
+        <path class="dec-dim" pathLength="100" stroke-width="0.9" stroke-opacity="0.6" d="M60 250 H98 V232 H60 Z M108 250 H146 V232 H108 Z"/>
+        <text x="60" y="268" font-size="8.5" stroke="none">FINGERING SERVOS &#215;4</text>
+
+        <path class="dec-fade" stroke-width="0.7" stroke-opacity="0.5" stroke-dasharray="7 5" d="M220 28 V282"/>
+        <text x="42" y="298" font-size="10" stroke="none">BOWING STUDY — TOP VIEW / CONTINUOUS ROSIN LINE</text>
+    </svg>
+</div>

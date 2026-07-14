@@ -1,0 +1,50 @@
+<div class="section-decor" aria-hidden="true">
+    <!-- Excavator working-equipment study: nested groups preserve every joint. -->
+    <svg class="decor-machinehub decor-excavator decor-sketch decor-trace" viewBox="0 0 520 330" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M24 282 C150 280 344 283 500 281"/>
+        <path class="dec-ghost" stroke-width="0.8" d="M26 286 C174 283 362 287 501 284"/>
+
+        <!-- anchored undercarriage and upper structure -->
+        <g class="ex-body">
+            <path class="dec-ghost" stroke-width="1" d="M70 244 Q84 218 126 216 L230 217 Q255 222 267 244"/>
+            <path class="dec-line" pathLength="100" stroke-width="2.2" d="M55 251 Q60 236 79 232 L237 232 Q258 236 267 252 L254 270 L70 270 Q55 264 55 251Z"/>
+            <path class="dec-line" pathLength="100" stroke-width="1.7" d="M82 241 L235 241 Q247 244 251 252 Q246 261 234 262 L82 262 Q70 259 68 251 Q71 245 82 241Z"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M89 251 L230 251 M104 241 L104 262 M216 241 L216 262"/>
+            <path class="dec-line" pathLength="100" stroke-width="2" d="M112 229 L126 184 L218 184 L246 230"/>
+            <path class="dec-line" pathLength="100" stroke-width="1.8" d="M137 184 L151 139 L207 139 L218 184 M151 139 L183 139 L193 184"/>
+            <path class="dec-ghost" stroke-width="0.9" d="M142 181 L155 144 L202 144 L212 181"/>
+            <path class="dec-line" pathLength="100" stroke-width="1.5" d="M91 229 L99 201 L126 184 M99 201 L76 198 L66 229"/>
+            <circle class="dec-line" pathLength="100" stroke-width="1.8" cx="185" cy="220" r="8"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M173 220 H197 M185 208 V232"/>
+        </g>
+
+        <!-- boom owns stick; stick owns bucket, so child pivots cannot drift -->
+        <g class="ex-boom">
+            <path class="dec-ghost" stroke-width="1.1" d="M184 216 Q217 148 271 96 Q289 78 321 84"/>
+            <path class="dec-line" pathLength="100" stroke-width="3" d="M185 220 Q218 151 273 101 Q292 84 310 88 L317 105 Q283 114 259 142 L203 224Z"/>
+            <path class="dec-line" pathLength="100" stroke-width="1.4" d="M198 214 Q225 158 273 116 Q293 99 311 98"/>
+            <path class="dec-dim" pathLength="100" stroke-width="1" d="M200 204 L230 149 M207 202 L237 153"/>
+            <circle class="dec-line" pathLength="100" stroke-width="1.8" cx="310" cy="98" r="7"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M299 98 H321 M310 87 V109"/>
+            <g class="ex-stick">
+                <path class="dec-ghost" stroke-width="1" d="M314 95 Q355 139 375 218"/>
+                <path class="dec-line" pathLength="100" stroke-width="2.8" d="M310 98 L327 96 Q361 145 378 211 L361 218 Q346 159 310 112Z"/>
+                <path class="dec-line" pathLength="100" stroke-width="1.3" d="M321 108 Q349 151 367 210"/>
+                <path class="dec-dim" pathLength="100" stroke-width="1" d="M321 116 L343 164 M328 113 L350 161"/>
+                <circle class="dec-line" pathLength="100" stroke-width="1.8" cx="369" cy="211" r="6"/>
+                <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M359 211 H379 M369 201 V221"/>
+                <g class="ex-bucket">
+                    <path class="dec-ghost" stroke-width="1" d="M370 207 Q414 205 447 226 Q431 266 385 268"/>
+                    <path class="dec-line" pathLength="100" stroke-width="2.8" d="M369 211 Q412 210 443 230 Q430 257 390 265 L374 246Z"/>
+                    <path class="dec-line" pathLength="100" stroke-width="1.4" d="M390 265 L382 273 M404 261 L399 270 M419 255 L416 264"/>
+                </g>
+            </g>
+        </g>
+
+        <path class="dec-dim ex-arc ex-boom-arc" pathLength="100" stroke-width="1" d="M151 213 A38 38 0 0 1 185 180"/>
+        <path class="dec-dim ex-arc ex-stick-arc" pathLength="100" stroke-width="1" d="M294 76 A28 28 0 0 1 333 98"/>
+        <path class="dec-dim ex-arc ex-bucket-arc" pathLength="100" stroke-width="1" d="M351 229 A24 24 0 0 1 386 228"/>
+        <text x="35" y="34" font-size="10" stroke="none">WORKING EQUIPMENT — KINEMATIC STUDY</text>
+        <text x="36" y="50" font-size="8.5" stroke="none">BOOM / STICK / BUCKET — FIXED JOINTS</text>
+    </svg>
+</div>

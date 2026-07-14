@@ -12,6 +12,7 @@ skills:
   - SolidWorks
 
 main-image: /Go2_main.png
+decor: go2
 ---
 
 ---

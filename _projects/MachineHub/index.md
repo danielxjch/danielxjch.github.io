@@ -13,6 +13,7 @@ skills:
   - Vercel
 
 main-image: /hub-home.jpg
+decor: machinehub
 ---
 
 ---
