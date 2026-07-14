@@ -234,4 +234,472 @@
             <text x="402" y="3508" font-size="7" stroke="none">46.0% AT YR 5</text>
         </g>
     </svg>
+
+    <!-- ============================================================
+         NEW STUDIES — the cluster above only ever occupied the RIGHT
+         gutter (y 1024-4261); everything below y 4261, and the entire
+         LEFT gutter top-to-bottom, was empty. Six additional studies,
+         each its own sibling svg positioned inline, balance the two
+         gutters and carry the sheet down through the full ~12000px
+         page. Left-gutter studies bleed slightly under the body copy
+         the way the original right-side cluster bleeds under the
+         galleries; every number drawn is grounded in the spec plate,
+         hero screenshot, or TCO breakdown assets already on the page.
+         ============================================================ -->
+
+    <!-- STUDY: hydraulic circuit schematic, ISO symbols — the pump/
+         relief/DCV/actuator circuit implied by the boom-cylinder
+         section study above, drawn as a system diagram instead of a
+         part section. Beside the hero summary, top of the sheet. -->
+    <svg class="decor-mh-hydraulic decor-sketch decor-trace" viewBox="0 0 260 460" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:140px; left:clamp(-168px, calc(48.69px - 15.05vw), -10px); width:min(320px,27vw);">
+        <text x="14" y="24" font-size="9.5" stroke="none">HYDRAULIC CIRCUIT — SCHEM.</text>
+        <text x="14" y="38" font-size="7.5" stroke="none">LOAD SENSING · 3,989 PSI / 38 GPM</text>
+
+        <!-- DCV block -->
+        <path class="dec-ghost" stroke-width="1" d="M29 69 H101 V111 H29Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.8" d="M30 70 H100 V110 H30Z"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M30 90 H100"/>
+        <path class="dec-arrow" stroke-width="1" d="M42 79 L48 84 L42 89 M58 101 L52 96 L58 91"/>
+        <path class="dec-arrow" stroke-width="1" d="M82 79 L88 84 L82 89 M98 101 L92 96 L98 91"/>
+        <text x="10" y="62" font-size="7" stroke="none">DCV — BOOM / STICK / BUCKET</text>
+
+        <!-- pump -->
+        <circle class="dec-ghost" stroke-width="1" cx="60" cy="392" r="15.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.8" cx="60" cy="392" r="15"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.4" d="M60 383 L53 398 L67 398Z"/>
+        <text x="80" y="388" font-size="7" stroke="none">PUMP</text>
+        <text x="80" y="398" font-size="6.5" stroke="none">AXIAL PISTON, VAR. DISPL.</text>
+
+        <!-- tank -->
+        <path class="dec-ghost" stroke-width="1" d="M28 448 V424 H92 V448"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.7" d="M29 448 V425 H91 V448"/>
+        <path class="dec-fade" stroke-width="0.6" stroke-dasharray="4 3" d="M33 434 H87"/>
+        <text x="34" y="443" font-size="6.5" stroke="none">TANK</text>
+
+        <!-- P / T lines -->
+        <path class="dec-ghost" stroke-width="0.9" d="M54 377 V111"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.6" d="M54 378 V110"/>
+        <text x="42" y="122" font-size="7" stroke="none">P</text>
+        <path class="dec-fade" stroke-width="0.7" stroke-dasharray="6 4" d="M78 111 V424"/>
+        <text x="80" y="122" font-size="7" stroke="none">T</text>
+
+        <!-- relief valve, tapped off P -->
+        <path class="dec-ghost" stroke-width="0.8" d="M108 148 H124 V164 H108Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.5" d="M109 149 H123 V163 H109Z"/>
+        <path class="dec-fade" stroke-width="0.6" d="M54 155 H108 M116 164 Q112 178 116 186 Q120 178 116 186"/>
+        <path class="dec-arrow" stroke-width="0.9" d="M112 182 L116 189 L120 182"/>
+        <text x="128" y="160" font-size="6.5" stroke="none">RELIEF</text>
+
+        <!-- actuator symbols, fed off the DCV -->
+        <path class="dec-ghost" stroke-width="0.9" d="M150 42 H196 V60 H150Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.6" d="M151 43 H195 V59 H151Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.4" d="M195 51 H228"/>
+        <text x="150" y="36" font-size="6.5" stroke="none">BOOM CYL</text>
+
+        <path class="dec-ghost" stroke-width="0.9" d="M150 176 H196 V194 H150Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.6" d="M151 177 H195 V193 H151Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.4" d="M195 185 H228"/>
+        <text x="146" y="170" font-size="6.5" stroke="none">BUCKET CYL</text>
+
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M100 80 H124 V51 H150 M100 100 H132 V185 H150"/>
+    </svg>
+
+    <!-- STUDY: ground-bearing pressure — the undercarriage GA implied
+         by the spec plate's "4.4 PSI" figure, drawn as a distributed-
+         load diagram rather than restated as a number. Left gutter,
+         beside the Market Comparisons / TCO breakdown charts. -->
+    <svg class="decor-mh-ground decor-sketch decor-trace" viewBox="0 0 300 230" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:2440px; left:clamp(-142px,-9.9vw,-36px); width:min(300px,26vw);">
+        <text x="18" y="22" font-size="9.5" stroke="none">GROUND BEARING PRESSURE</text>
+        <text x="18" y="36" font-size="7.5" stroke="none">TRACKED UNDERCARRIAGE</text>
+
+        <circle class="dec-ghost" stroke-width="1" cx="72" cy="122" r="30.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.6" cx="72" cy="122" r="30"/>
+        <circle class="dec-ghost" stroke-width="1" cx="210" cy="122" r="30.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.6" cx="210" cy="122" r="30"/>
+
+        <path class="dec-ghost" stroke-width="1.1" d="M72 92 H210 M72 152 H210"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.8" d="M72 92.5 H210 M72 151.5 H210"/>
+
+        <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M100 60 V90"/>
+        <path class="dec-arrow" stroke-width="1" d="M96 83 L100 90 L104 83"/>
+        <text x="104" y="66" font-size="7" stroke="none">W = 11,707 LB</text>
+
+        <path class="dec-fade" stroke-width="0.7" stroke-dasharray="8 4" d="M20 178 H272"/>
+        <text x="230" y="174" font-size="6.5" stroke="none">GRADE</text>
+
+        <path class="dec-arrow" stroke-width="0.9" d="M78 168 V158 M104 168 V158 M130 168 V158 M156 168 V158 M182 168 V158 M204 168 V158"/>
+        <path class="dec-arrow" stroke-width="0.9" d="M74 160 L78 154 L82 160 M100 160 L104 154 L108 160 M126 160 L130 154 L134 160 M152 160 L156 154 L160 160 M178 160 L182 154 L186 160 M200 160 L204 154 L208 160"/>
+
+        <path class="dec-dim" pathLength="100" stroke-width="0.7" d="M72 200 H210"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M72 196 V204 M210 196 V204"/>
+        <text x="112" y="216" font-size="7" stroke="none">CONTACT LENGTH</text>
+
+        <text x="18" y="52" font-size="8.5" stroke="none">4.4 PSI</text>
+    </svg>
+
+    <!-- STUDY: engine power/torque curve — the spec plate's "45.2 HP
+         @ 2,400 RPM" restated as the family of curves it's pulled
+         from, in the retained-value chart's own plotting convention.
+         Left gutter, beside the Attachment Compatibility transition. -->
+    <svg class="decor-mh-power decor-sketch decor-trace" viewBox="0 0 320 250" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:4680px; left:clamp(-152px,-10.6vw,-38px); width:min(320px,27vw);">
+        <text x="18" y="22" font-size="9.5" stroke="none">ENGINE OUTPUT — MODELED</text>
+        <text x="18" y="36" font-size="7.5" stroke="none">4TNV86CT, 128 IN³</text>
+
+        <path class="dec-ghost" stroke-width="0.9" d="M40 60 V190 H290"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M40 60 V190 H290"/>
+        <path class="dec-fade" stroke-width="0.5" stroke-dasharray="3 3" d="M40 100 H290 M40 140 H290"/>
+
+        <text x="14" y="63" font-size="6.5" stroke="none">HP</text>
+        <text x="150" y="206" font-size="6.5" stroke="none">RPM</text>
+        <text x="34" y="200" font-size="6" stroke="none">0</text>
+        <text x="264" y="200" font-size="6" stroke="none">2,400</text>
+
+        <path class="dec-ghost" stroke-width="1" d="M42 186 Q120 178 190 140 Q240 116 288 90"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.9" d="M42 187 Q118 180 188 142 Q238 118 286 92"/>
+        <text x="180" y="118" font-size="6.5" stroke="none">POWER</text>
+
+        <path class="dec-fade" stroke-width="1" stroke-dasharray="5 4" d="M42 175 Q100 120 150 96 Q210 100 286 150"/>
+        <text x="150" y="88" font-size="6.5" stroke="none">TORQUE</text>
+
+        <circle class="dec-ghost" stroke-width="0.9" cx="286" cy="92" r="4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.6" cx="286" cy="92" r="3.2"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M286 92 L246 70"/>
+        <text x="150" y="66" font-size="7" stroke="none">45.2 HP NET @ 2,400 RPM</text>
+    </svg>
+
+    <!-- STUDY: quick-coupler / attachment interface — the "Fitted
+         Attachments: Quick coupler" checkbox on the Attachment
+         Compatibility screenshot, drawn as the mechanical pin-grab
+         detail behind it. Deep in the left gutter, beside the Bob
+         personality/priorities section. -->
+    <svg class="decor-mh-coupler decor-sketch decor-trace" viewBox="0 0 260 250" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:9440px; left:clamp(-146px,-10.1vw,-37px); width:min(300px,26vw);">
+        <text x="14" y="22" font-size="9.5" stroke="none">QUICK COUPLER — PIN GRAB</text>
+        <text x="14" y="36" font-size="7.5" stroke="none">STICK-END INTERFACE</text>
+
+        <path class="dec-ghost" stroke-width="1" d="M40 56 L180 50 Q198 52 200 70 L196 118 L44 124 Q30 120 30 100 L34 68 Q35 58 40 56Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="2" d="M42 58 L178 52 Q195 54 197 71 L193 116 L46 122 Q33 118 33 99 L37 69 Q38 60 42 58Z"/>
+
+        <circle class="dec-ghost" stroke-width="0.9" cx="70" cy="86" r="14.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.7" cx="70" cy="86" r="14"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M62 86 H78 M70 78 V94"/>
+        <text x="46" y="112" font-size="6" stroke="none">FRONT PIN</text>
+
+        <circle class="dec-ghost" stroke-width="0.9" cx="160" cy="82" r="14.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.7" cx="160" cy="82" r="14"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M152 82 H168 M160 74 V90"/>
+        <text x="128" y="44" font-size="6" stroke="none">REAR PIN, LOCKING</text>
+
+        <path class="dec-fade" stroke-width="0.7" stroke-dasharray="6 4" d="M70 86 H160 V82"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M70 108 H160"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.5" d="M70 104 V112 M160 104 V112"/>
+        <text x="88" y="128" font-size="6.5" stroke="none">PIN SPACING</text>
+
+        <!-- wedge lock actuator -->
+        <path class="dec-ghost" stroke-width="0.8" d="M148 96 L172 100 L164 112Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.4" d="M149 97 L170 101 L163 111Z"/>
+
+        <!-- attachment lug plate below, matching bosses -->
+        <path class="dec-fade" stroke-width="0.6" stroke-dasharray="2 4" d="M70 100 V180 M160 96 V180"/>
+        <path class="dec-ghost" stroke-width="0.9" d="M46 180 H188 V208 H46Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.6" d="M48 180 H186 V206 H48Z"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.4" cx="70" cy="193" r="9"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.4" cx="160" cy="193" r="9"/>
+        <text x="52" y="222" font-size="6.5" stroke="none">ATTACHMENT LUG PLATE</text>
+    </svg>
+
+    <!-- STUDY: bucket cross-section, teeth & wear points — a General
+         Arrangement of the bucket itself, distinct from the working
+         excavator/reach studies above. Large centerpiece for the
+         empty lower-right gutter (existing cluster stops at y 4261),
+         beside the SANY Bob / Admin Backend transition. -->
+    <svg class="decor-mh-bucket decor-sketch decor-trace" viewBox="0 0 420 320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:6620px; right:clamp(-84px,-5.8vw,-20px); width:min(500px,40vw);">
+        <text x="24" y="28" font-size="10.5" stroke="none">BUCKET — GENERAL ARRANGEMENT</text>
+        <text x="24" y="44" font-size="8" stroke="none">0.37 YD³, MULCH/WOOD-CHIP RATED</text>
+
+        <!-- shell profile -->
+        <path class="dec-ghost" stroke-width="1.3" d="M60 90 Q56 150 78 200 Q100 244 160 262 L340 258 Q368 254 372 236 L360 220 L150 224 Q108 216 92 182 Q78 148 84 96Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="2.6" d="M62 92 Q58 150 80 198 Q102 240 160 258 L338 254 Q364 250 368 234 L357 219 L152 222 Q110 213 94 180 Q80 147 86 98Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.4" d="M96 110 Q88 152 106 190 Q124 222 168 236 L330 233"/>
+
+        <!-- pin bosses (stick pin + bucket-cylinder linkage pin) -->
+        <circle class="dec-ghost" stroke-width="1" cx="72" cy="80" r="13.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.8" cx="72" cy="80" r="13"/>
+        <circle class="dec-ghost" stroke-width="1" cx="120" cy="66" r="10.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.6" cx="120" cy="66" r="10"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M72 80 L120 66"/>
+        <text x="60" y="56" font-size="7" stroke="none">STICK PIN</text>
+        <text x="128" y="60" font-size="7" stroke="none">LINK PIN</text>
+
+        <!-- cutting edge with teeth -->
+        <path class="dec-line" pathLength="100" stroke-width="1.8" d="M340 258 L358 276 L332 280 L350 296 L322 298 L338 312 L308 310 L322 296 L296 294 L306 280 L282 276 L296 262Z"/>
+        <path class="dec-ghost" stroke-width="0.9" d="M340 258 L358 276 L332 280 L350 296 L322 298 L338 312 L308 310 L322 296 L296 294 L306 280 L282 276 L296 262Z"/>
+        <text x="270" y="330" font-size="7" stroke="none">CUTTING EDGE — 4 TOOTH</text>
+
+        <!-- wear point callout -->
+        <circle class="dec-fade" stroke-width="0.7" stroke-dasharray="3 3" cx="338" cy="290" r="16"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M352 280 L392 250"/>
+        <text x="356" y="246" font-size="7" stroke="none">WEAR LIMIT</text>
+        <text x="356" y="258" font-size="6.5" stroke="none">REPLACE AT ~40% LOSS</text>
+
+        <!-- side cutter -->
+        <path class="dec-ghost" stroke-width="0.9" d="M368 234 L392 224 L400 240 L376 250Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.5" d="M368 235 L390 225 L398 240 L376 249Z"/>
+        <text x="360" y="200" font-size="6.5" stroke="none" transform="rotate(-8 360 200)">SIDE CUTTER</text>
+
+        <!-- bolt-on edge inset detail -->
+        <path class="dec-ghost" stroke-width="0.9" d="M24 220 H150 V286 H24Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.4" d="M25 221 H149 V285 H25Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.6" d="M34 268 L140 260 L140 244 L34 236Z"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.2" cx="60" cy="252" r="4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.2" cx="110" cy="248" r="4"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.5" d="M60 252 V276 M110 248 V276"/>
+        <text x="34" y="230" font-size="6.5" stroke="none">BOLT-ON EDGE — SECTION</text>
+    </svg>
+
+    <!-- STUDY: financing amortization curve — the hero screenshot's
+         financing panel (60 mo / 4.5% APR / 25% down on $65,000)
+         restated as the balance-vs-interest curves it implies,
+         plotted in the same convention as the retained-value chart
+         above. Right gutter, in the open run before Engineering Notes. -->
+    <svg class="decor-mh-financing decor-sketch decor-trace" viewBox="0 0 320 250" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:10160px; right:clamp(-64px,-4.5vw,-16px); width:min(340px,28vw);">
+        <text x="18" y="22" font-size="9.5" stroke="none">AMORTIZATION — MODELED</text>
+        <text x="18" y="36" font-size="7.5" stroke="none">60 MO · 4.5% APR · 25% DOWN</text>
+
+        <path class="dec-ghost" stroke-width="0.9" d="M40 60 V190 H290"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M40 60 V190 H290"/>
+        <path class="dec-fade" stroke-width="0.5" stroke-dasharray="3 3" d="M40 100 H290 M40 140 H290"/>
+
+        <text x="6" y="63" font-size="6.5" stroke="none">BAL.</text>
+        <text x="150" y="206" font-size="6.5" stroke="none">MONTHS</text>
+        <text x="34" y="200" font-size="6" stroke="none">0</text>
+        <text x="270" y="200" font-size="6" stroke="none">60</text>
+
+        <path class="dec-ghost" stroke-width="1" d="M42 68 Q120 90 180 130 Q230 160 288 186"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.9" d="M42 69 Q118 92 178 132 Q228 162 286 188"/>
+        <text x="60" y="90" font-size="6.5" stroke="none">PRINCIPAL BALANCE</text>
+
+        <path class="dec-fade" stroke-width="1" stroke-dasharray="5 4" d="M42 188 Q120 178 180 158 Q230 140 286 118"/>
+        <text x="190" y="150" font-size="6.5" stroke="none">CUM. INTEREST</text>
+
+        <circle class="dec-ghost" stroke-width="0.9" cx="42" cy="69" r="4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.6" cx="42" cy="69" r="3.2"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M42 69 L80 48"/>
+        <text x="82" y="46" font-size="7" stroke="none">$48,750 FINANCED</text>
+
+        <circle class="dec-ghost" stroke-width="0.9" cx="286" cy="188" r="4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.6" cx="286" cy="188" r="3.2"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M286 188 L240 210"/>
+        <text x="150" y="222" font-size="7" stroke="none">MO 60 — PAID IN FULL</text>
+    </svg>
+
+    <!-- ============================================================
+         SECOND PASS — the six studies above still left the left gutter
+         mostly bare from y~5300 to y~9100 (worst void on the sheet),
+         and two shorter right-gutter runs (4500-6400, 7000-9900) empty.
+         Five more studies close those runs, each grounded in the
+         mechanical system behind a page section rather than restating
+         a UI screenshot: the slew ring under the upper structure, the
+         undercarriage chain/sprocket under the ground-pressure study,
+         the tip-over stability math behind any load chart, the ISO/SAE
+         control pattern behind the operator-facing copy, and the
+         Tier 4 Final emissions path implied by the engine spec plate.
+         ============================================================ -->
+
+    <!-- STUDY: slew bearing ball race — the pivot the whole upper
+         structure (and the kinematic study at the top of the sheet)
+         actually turns on. Left gutter, closing the gap right after
+         the engine power/torque study. -->
+    <svg class="decor-mh-slew decor-sketch decor-trace" viewBox="0 0 300 260" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:5400px; left:clamp(-142px,-9.9vw,-36px); width:min(300px,26vw);">
+        <text x="14" y="22" font-size="9.5" stroke="none">SLEW BEARING — BALL RACE</text>
+        <text x="14" y="36" font-size="7.5" stroke="none">SINGLE-ROW BALL, INTERNAL GEAR</text>
+
+        <circle class="dec-ghost" stroke-width="1" cx="100" cy="132" r="58.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.8" cx="100" cy="132" r="58"/>
+        <circle class="dec-fade" stroke-width="0.6" stroke-dasharray="4 3" cx="100" cy="132" r="44"/>
+        <circle class="dec-ghost" stroke-width="1" cx="100" cy="132" r="30.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.6" cx="100" cy="132" r="30"/>
+
+        <path class="dec-line" pathLength="100" stroke-width="1" d="M100 74 L100 68 M139 93 L143 88 M158 132 L164 132 M139 171 L143 176 M100 190 L100 196 M61 171 L57 176 M42 132 L36 132 M61 93 L57 88"/>
+        <text x="120" y="66" font-size="6.5" stroke="none">INTERNAL GEAR — 84T</text>
+
+        <circle class="dec-ghost" stroke-width="0.8" cx="144" cy="132" r="4.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.4" cx="144" cy="132" r="4"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M100 132 L144 132"/>
+        <text x="104" y="128" font-size="6.5" stroke="none">PCD 552mm</text>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M144 132 L212 100"/>
+
+        <path class="dec-ghost" stroke-width="0.9" d="M212 78 H288 V162 H212Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.5" d="M213 79 H287 V161 H213Z"/>
+        <text x="214" y="74" font-size="6.5" stroke="none">RACE SECTION</text>
+        <path class="dec-ghost" stroke-width="0.9" d="M222 90 H240 V150 H222Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.4" d="M223 91 H239 V149 H223Z"/>
+        <path class="dec-ghost" stroke-width="0.9" d="M260 90 H278 V150 H260Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.4" d="M261 91 H277 V149 H261Z"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.6" cx="250" cy="120" r="9"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M241 120 H259"/>
+        <text x="214" y="158" font-size="6" stroke="none">⌀16 BALL</text>
+
+        <text x="14" y="248" font-size="7" stroke="none">84 BALLS · GREASE PACKED</text>
+    </svg>
+
+    <!-- STUDY: track chain & drive sprocket pitch detail — the mechanism
+         under the ground-bearing-pressure study higher up the same
+         gutter (that study showed the load; this shows the drivetrain
+         carrying it). Largest of the second-pass left studies, closing
+         most of the remaining left-gutter void before the coupler study. -->
+    <svg class="decor-mh-track decor-sketch decor-trace" viewBox="0 0 260 280" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:7500px; left:clamp(-152px,-10.6vw,-40px); width:min(260px,22vw);">
+        <text x="14" y="24" font-size="9.5" stroke="none">TRACK CHAIN — SPROCKET PITCH</text>
+        <text x="14" y="38" font-size="7.5" stroke="none">21T DRIVE SPROCKET · 300mm SHOE</text>
+
+        <circle class="dec-ghost" stroke-width="1" cx="90" cy="150" r="50.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="2" cx="90" cy="150" r="50"/>
+        <circle class="dec-ghost" stroke-width="0.9" cx="90" cy="150" r="18.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.5" cx="90" cy="150" r="18"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.3" d="M90 92 L90 85 M126 105 L132 100 L138 106 M143 150 L150 150 M126 195 L132 200 L138 194 M90 208 L90 215 M54 195 L48 200 L42 194 M37 150 L30 150 M54 105 L48 100 L42 106"/>
+        <path class="dec-arrow" stroke-width="1" d="M143 150 L158 144 L158 156Z"/>
+        <text x="138" y="80" font-size="6.5" stroke="none">DRIVE SPROCKET</text>
+
+        <path class="dec-fade" stroke-width="0.6" stroke-dasharray="4 3" d="M14 202 H166"/>
+        <path class="dec-ghost" stroke-width="0.9" d="M24 194 L40 194 L40 210 L24 210Z M48 194 L64 194 L64 210 L48 210Z M72 194 L88 194 L88 210 L72 210Z M96 194 L112 194 L112 210 L96 210Z M120 194 L136 194 L136 210 L120 210Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.4" d="M25 195 L39 195 L39 209 L25 209Z M49 195 L63 195 L63 209 L49 209Z M73 195 L87 195 L87 209 L73 209Z M97 195 L111 195 L111 209 L97 209Z M121 195 L135 195 L135 209 L121 209Z"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M32 217 L56 217"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.5" d="M32 213 V221 M56 213 V221"/>
+        <text x="20" y="231" font-size="6.5" stroke="none">PITCH 72.3mm</text>
+
+        <path class="dec-ghost" stroke-width="0.9" d="M170 140 H248 V156 H222 L222 168 L196 168 L196 156 H170Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.6" d="M171 141 H247 V155 H221 L221 167 L197 167 L197 155 H171Z"/>
+        <text x="172" y="130" font-size="6.5" stroke="none">TRIPLE GROUSER</text>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M170 178 H248"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.5" d="M170 174 V182 M248 174 V182"/>
+        <text x="174" y="194" font-size="6.5" stroke="none">SHOE 300mm</text>
+
+        <text x="14" y="266" font-size="7" stroke="none">SEALED &amp; LUBRICATED LINKS</text>
+    </svg>
+
+    <!-- STUDY: tip-over stability / load moment — the physics behind
+         any lift-capacity number on the page, drawn as the ISO 10567
+         rated-load construction rather than a UI restatement. Right
+         gutter, closing the gap between the main notes cluster (ends
+         y~4261) and the bucket GA study. -->
+    <svg class="decor-mh-stability decor-sketch decor-trace" viewBox="0 0 320 270" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:4900px; right:clamp(-64px,-4.5vw,-16px); width:min(320px,27vw);">
+        <text x="16" y="22" font-size="9.5" stroke="none">STABILITY — TIPOVER MOMENT</text>
+        <text x="16" y="36" font-size="7.5" stroke="none">RATED AT 75% TIPPING LOAD, ISO 10567</text>
+
+        <path class="dec-fade" stroke-width="0.7" stroke-dasharray="8 4" d="M20 210 H300"/>
+
+        <path class="dec-ghost" stroke-width="1" d="M50 190 H170 V206 H50Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.8" d="M51 191 H169 V205 H51Z"/>
+
+        <circle class="dec-line" pathLength="100" stroke-width="1.6" cx="170" cy="198" r="4"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M170 198 V220"/>
+        <text x="150" y="232" font-size="6.5" stroke="none">TIPPING FULCRUM</text>
+
+        <circle class="dec-ghost" stroke-width="0.9" cx="90" cy="150" r="8.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.5" cx="90" cy="150" r="8"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.2" d="M82 150 H98 M90 142 V158"/>
+        <text x="98" y="146" font-size="6.5" stroke="none">CG</text>
+
+        <path class="dec-dim" pathLength="100" stroke-width="0.7" d="M90 172 H170"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.5" d="M90 168 V176 M170 168 V176"/>
+        <text x="100" y="186" font-size="6.5" stroke="none">CG MOMENT ARM</text>
+
+        <path class="dec-ghost" stroke-width="1" d="M120 150 Q220 120 290 195"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.6" d="M120 152 Q218 122 288 197"/>
+
+        <circle class="dec-line" pathLength="100" stroke-width="1.4" cx="288" cy="197" r="4"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M288 197 V214"/>
+        <text x="250" y="228" font-size="6.5" stroke="none">RATED LOAD PT.</text>
+
+        <path class="dec-dim" pathLength="100" stroke-width="0.7" d="M170 244 H288"/>
+        <path class="dec-dim" pathLength="100" stroke-width="0.5" d="M170 240 V248 M288 240 V248"/>
+        <text x="185" y="256" font-size="6.5" stroke="none">LOAD MOMENT ARM</text>
+    </svg>
+
+    <!-- STUDY: control pattern — ISO/SAE joystick map, the operator
+         input behind SANY Bob and the Admin Backend / Assistant Console
+         copy. Large centerpiece for the long empty right-gutter run
+         between the bucket GA study and the financing curve. The
+         labeled joystick pair is shifted into the right ~55% of the
+         viewBox and the offset pushed further into the margin than the
+         bucket study's, because this stretch of the page (Admin Backend
+         / Assistant Console screenshots) runs wider than the rest of
+         the sheet — keeping the readable geometry clear of that card
+         edge instead of letting it get cut mid-label. -->
+    <svg class="decor-mh-controls decor-sketch decor-trace" viewBox="0 0 460 280" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:8560px; right:clamp(-100px,-6.9vw,-24px); width:min(480px,40vw);">
+        <text x="16" y="24" font-size="10.5" stroke="none">CONTROL PATTERN — JOYSTICK MAP</text>
+        <text x="16" y="40" font-size="8" stroke="none">ISO 10968 STANDARD, FIELD-SELECTABLE SAE</text>
+
+        <text x="250" y="66" font-size="8" stroke="none">ISO PATTERN — DEFAULT</text>
+
+        <circle class="dec-ghost" stroke-width="1" cx="200" cy="140" r="45.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.8" cx="200" cy="140" r="45"/>
+        <circle class="dec-ghost" stroke-width="0.9" cx="200" cy="140" r="10.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.5" cx="200" cy="140" r="10"/>
+        <path class="dec-arrow" stroke-width="1.2" d="M200 100 L194 112 L206 112Z"/>
+        <path class="dec-arrow" stroke-width="1.2" d="M200 180 L194 168 L206 168Z"/>
+        <path class="dec-arrow" stroke-width="1.2" d="M160 140 L172 134 L172 146Z"/>
+        <path class="dec-arrow" stroke-width="1.2" d="M240 140 L228 134 L228 146Z"/>
+        <text x="192" y="92" font-size="6" stroke="none">BOOM UP</text>
+        <text x="186" y="196" font-size="6" stroke="none">BOOM DOWN</text>
+        <text x="120" y="138" font-size="6" stroke="none">SWING L</text>
+        <text x="246" y="138" font-size="6" stroke="none">SWING R</text>
+        <text x="172" y="118" font-size="6.5" stroke="none">LH</text>
+
+        <circle class="dec-ghost" stroke-width="1" cx="360" cy="140" r="45.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.8" cx="360" cy="140" r="45"/>
+        <circle class="dec-ghost" stroke-width="0.9" cx="360" cy="140" r="10.4"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.5" cx="360" cy="140" r="10"/>
+        <path class="dec-arrow" stroke-width="1.2" d="M360 100 L354 112 L366 112Z"/>
+        <path class="dec-arrow" stroke-width="1.2" d="M360 180 L354 168 L366 168Z"/>
+        <path class="dec-arrow" stroke-width="1.2" d="M320 140 L332 134 L332 146Z"/>
+        <path class="dec-arrow" stroke-width="1.2" d="M400 140 L388 134 L388 146Z"/>
+        <text x="340" y="92" font-size="6" stroke="none">BUCKET CURL</text>
+        <text x="336" y="196" font-size="6" stroke="none">BUCKET DUMP</text>
+        <text x="282" y="138" font-size="6" stroke="none">STICK OUT</text>
+        <text x="404" y="138" font-size="6" stroke="none">STICK IN</text>
+        <text x="332" y="118" font-size="6.5" stroke="none">RH</text>
+
+        <path class="dec-fade" stroke-width="0.6" stroke-dasharray="4 3" d="M120 220 H452"/>
+        <path class="dec-ghost" stroke-width="0.9" d="M130 230 H160 V246 H130Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.4" d="M131 231 H159 V245 H131Z"/>
+        <circle class="dec-line" pathLength="100" stroke-width="1.2" cx="145" cy="234" r="3"/>
+        <text x="166" y="242" font-size="7" stroke="none">SELECTOR SWITCH — CAB FLOOR</text>
+        <text x="130" y="258" font-size="6.5" stroke="none">SAE MODE SWAPS STICK ⇄ BOOM AXES</text>
+    </svg>
+
+    <!-- STUDY: Tier 4 Final emissions path — the aftertreatment implied
+         by the spec plate's engine line, drawn as a flow diagram. Under
+         56kW net (33.7kW / 45.2HP here), the 4TNV86CT clears Tier 4
+         Final on DOC + cooled EGR alone, no DEF/SCR — grounded in that
+         real regulatory threshold rather than inventing a dosing system
+         the engine doesn't carry. Left gutter, lower page. -->
+    <svg class="decor-mh-emissions decor-sketch decor-trace" viewBox="0 0 260 220" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:10900px; left:clamp(-122px,-8.5vw,-30px); width:min(260px,22vw);">
+        <text x="14" y="22" font-size="9.5" stroke="none">EMISSIONS FLOW — TIER 4 FINAL</text>
+        <text x="14" y="36" font-size="7.5" stroke="none">4TNV86CT · DOC + COOLED EGR</text>
+
+        <path class="dec-ghost" stroke-width="1" d="M20 60 H90 V110 H20Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.8" d="M21 61 H89 V109 H21Z"/>
+        <text x="28" y="88" font-size="7" stroke="none">ENGINE</text>
+
+        <path class="dec-fade" stroke-width="0.8" stroke-dasharray="5 4" d="M90 65 Q60 30 30 60"/>
+        <path class="dec-arrow" stroke-width="0.9" d="M35 53 L28 60 L38 64"/>
+        <text x="18" y="26" font-size="6.5" stroke="none">COOLED EGR</text>
+
+        <path class="dec-line" pathLength="100" stroke-width="1.5" d="M90 85 H130"/>
+        <path class="dec-arrow" stroke-width="1" d="M124 80 L131 85 L124 90"/>
+
+        <path class="dec-ghost" stroke-width="1" d="M132 66 H190 V104 H132Z"/>
+        <path class="dec-line" pathLength="100" stroke-width="1.8" d="M133 67 H189 V103 H133Z"/>
+        <text x="138" y="90" font-size="6.5" stroke="none">DOC</text>
+
+        <path class="dec-line" pathLength="100" stroke-width="1.5" d="M190 85 H228"/>
+        <path class="dec-arrow" stroke-width="1" d="M222 80 L229 85 L222 90"/>
+        <text x="196" y="76" font-size="6" stroke="none">STACK</text>
+
+        <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M160 104 V150"/>
+        <text x="118" y="164" font-size="6.5" stroke="none">NO DEF/SCR — UNDER 56 kW</text>
+        <text x="118" y="176" font-size="6.5" stroke="none">CLASS THRESHOLD</text>
+
+        <text x="14" y="204" font-size="7" stroke="none">33.7 kW NET (45.2 HP)</text>
+    </svg>
 </div>

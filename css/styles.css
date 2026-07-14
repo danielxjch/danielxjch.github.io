@@ -1358,6 +1358,17 @@ footer {
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+/* Project-page marginalia lives entirely in the sheet gutters, which
+   only open up above ~1200px. Below that the content is effectively
+   full-width with no gutter to hold drawings, so the whole decor layer
+   is hidden — decor is a desktop enhancement here, and this keeps the
+   page from carrying phantom width on tablet/mobile. */
+@media (max-width: 1300px) {
+    .post-view .section-decor {
+        display: none;
+    }
+}
+
 @media (max-width: 900px) {
     .hero-section .group {
         grid-template-columns: 1fr;

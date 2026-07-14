@@ -162,7 +162,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 for (let i = 0; i < traced.length; i++) rects.push(traced[i].getBoundingClientRect());
                 for (let j = 0; j < traced.length; j++) {
                     const r = rects[j];
-                    const p = Math.min(1, Math.max(0, (ih - r.top) / (r.height + ih)));
+                    // Each stroke inks in as its own top travels from the
+                    // viewport bottom (p=0) up to ~40% down the viewport
+                    // (p=1, fully drawn), then holds. Completing while the
+                    // stroke is comfortably in view — rather than only once it
+                    // has scrolled off the top — means every study, however
+                    // tall or far down a long sheet, actually finishes drawing
+                    // on screen. Still monotonic in scroll, so it reverses
+                    // cleanly on the way back up.
+                    const p = Math.min(1, Math.max(0, (ih - r.top) / (ih * 0.6)));
                     traced[j].style.strokeDashoffset = 100 - p * 100;
                 }
             }
