@@ -4,10 +4,14 @@ document.addEventListener('DOMContentLoaded', function () {
     initMenu();
     initReveal(reduceMotion);
     initDecorTrace(reduceMotion);
+    initProjectTrace(reduceMotion);
     initLinkage(reduceMotion);
     initCansat(reduceMotion);
     initExcavator(reduceMotion);
     initBow(reduceMotion);
+    initGo2(reduceMotion);
+    initMhReach(reduceMotion);
+    initCansatSbus(reduceMotion);
 
     // 0..1 progress of a section through the viewport (symmetric both
     // scroll directions, stable under fast scroll: pure function of layout)
@@ -70,21 +74,28 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        // Reversible: toggle as elements enter AND leave the viewport, so
+        // reveal-in content animates back out when you scroll up (matching
+        // the scroll-scrubbed decor). No unobserve. rootMargin keeps the
+        // toggle off the very edge so it doesn't flicker.
         const observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
+                entry.target.classList.toggle('is-visible', entry.isIntersecting);
             });
         }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
         revealEls.forEach(function (el) { observer.observe(el); });
     }
 
-    // Marginalia draw-in: each drawing traces itself once as it enters
+    // Marginalia draw-in: each drawing traces itself once as it enters.
+    // Homepage sections only — project-page studies are handled by
+    // initProjectTrace below, which scroll-scrubs the linework instead
+    // so it reverses on scroll-up.
     function initDecorTrace(reduceMotion) {
-        const clusters = document.querySelectorAll('.decor-trace');
+        const clusters = Array.prototype.filter.call(
+            document.querySelectorAll('.decor-trace'),
+            function (el) { return !el.closest('.post-view'); }
+        );
 
         if (!clusters.length) return;
 
@@ -103,6 +114,62 @@ document.addEventListener('DOMContentLoaded', function () {
         }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
         clusters.forEach(function (el) { observer.observe(el); });
+    }
+
+    // Project-page linework: scroll-scrubbed and reversible instead of
+    // the homepage's one-shot draw-in. The primary outline (dec-line /
+    // dec-dim) tracks sectionProgress(svg) directly every frame, so the
+    // drawing draws in as it scrolls up into view and un-draws as it
+    // leaves. Secondary annotation (ghost underlay, dims, arrows, notes)
+    // still fades in once via .is-drawn, matching the homepage's polish —
+    // only the traced outline itself needed to become reversible.
+    function initProjectTrace(reduceMotion) {
+        const svgs = document.querySelectorAll('.post-view .decor-trace');
+
+        if (!svgs.length) return;
+
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+            svgs.forEach(function (svg) { svg.classList.add('is-drawn'); });
+            return;
+        }
+
+        svgs.forEach(function (svg) {
+            // Reversible reveal for the secondary annotation layer (ghost
+            // underlay, arrows, notes): toggle .is-drawn as the sheet enters
+            // and leaves view, matching the reversible linework below. Low
+            // threshold so a tall multi-study sheet shows annotation for
+            // whichever study is on screen.
+            const revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    svg.classList.toggle('is-drawn', entry.isIntersecting);
+                });
+            }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+            revealObserver.observe(svg);
+
+            const traced = svg.querySelectorAll('.dec-line, .dec-dim');
+            if (!traced.length) return;
+
+            // Each stroke draws in by ITS OWN travel through the viewport,
+            // not the whole svg's. On a tall sheet stacking several studies
+            // this means every study draws when it is actually on screen and
+            // un-draws on the way back up — instead of all strokes sharing
+            // one whole-sheet offset (which left lower studies blank until
+            // you had scrolled past them). Reads are batched before writes
+            // to avoid layout thrash.
+            function update() {
+                const ih = window.innerHeight;
+                const rects = [];
+                for (let i = 0; i < traced.length; i++) rects.push(traced[i].getBoundingClientRect());
+                for (let j = 0; j < traced.length; j++) {
+                    const r = rects[j];
+                    const p = Math.min(1, Math.max(0, (ih - r.top) / (r.height + ih)));
+                    traced[j].style.strokeDashoffset = 100 - p * 100;
+                }
+            }
+
+            update();
+            driveOnScroll(svg, update);
+        });
     }
 
     // Four-bar kinematic study: crank angle rides the projects section's
@@ -184,10 +251,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const HLX = 168, HRX = 232, HY = 230;
         const COVER_LIFT = -170, ARM_FOLD = 92;
 
+        // pace off the deployment study's own extent, not the whole (now
+        // multi-study, very tall) sheet — the arcs sit at its centre and
+        // have a fixed bbox, so they make a stable anchor.
+        const anchor = svg.querySelector('.cs-arc') || svg;
+
         function update() {
             // the study's own travel through the viewport is the timeline,
             // so the deployment plays while the drawing is on screen
-            const p = sectionProgress(svg);
+            const p = sectionProgress(anchor);
             const c = Math.min(1, Math.max(0, (p - 0.15) / 0.28));        // cover off first
             const q = Math.min(1, Math.max(0, (p - 0.38) / 0.34));        // then arms swing
             cover.setAttribute('transform', 'translate(0 ' + (COVER_LIFT * c) + ')');
@@ -223,16 +295,22 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        function update() { setPose(sectionProgress(svg)); }
+        // pace off just the excavator's own extent, not the whole (now
+        // very tall, multi-study) machinehub sheet.
+        const scope = svg.querySelector('.ex-scope') || svg;
+        function update() { setPose(sectionProgress(scope)); }
         update();
         driveOnScroll(svg, update);
     }
 
     // Robotic violin bowing: a continuous rosin-coated fishing-line LOOP
-    // runs around two motor wheels mounted together on ONE side. Both
-    // wheels spin the same way, driving the loop so its runs travel
-    // across the strings (perpendicular contact). Nothing slides or
-    // straddles the strings — the surface of the loop is what moves.
+    // runs around two motor wheels that straddle the string (one wheel
+    // left of the string span, one right — opposite sides of the
+    // string). Both wheels sit on the same side of the BOW: the short
+    // top run between them is the single contact run that crosses the
+    // strings at 90 degrees, while the loop's return run is routed
+    // below, clear of the strings. Both wheels spin the same rotational
+    // sense to drive the loop. Reverses cleanly when scrolling back up.
     function initBow(reduceMotion) {
         const svg = document.querySelector('.decor-violin');
 
@@ -249,11 +327,96 @@ document.addEventListener('DOMContentLoaded', function () {
             const p = sectionProgress(svg);
             // dashes travel around the loop; both wheels drive it the
             // same direction. Reverses cleanly when scrolling back up.
-            flow.style.strokeDashoffset = (-p * 260) + '';
-            wheelA.setAttribute('transform', 'rotate(' + (p * 540) + ' 326 150)');
-            wheelB.setAttribute('transform', 'rotate(' + (p * 540) + ' 368 150)');
+            flow.style.strokeDashoffset = (-p * 280) + '';
+            wheelA.setAttribute('transform', 'rotate(' + (p * 540) + ' 176 178)');
+            wheelB.setAttribute('transform', 'rotate(' + (p * 540) + ' 264 178)');
         }
 
+        update();
+        driveOnScroll(svg, update);
+    }
+
+    // Go2 ego-circle navigation study: a robot marker rides the planned
+    // path (getPointAtLength) as the study scrolls through view, the
+    // path draws in step with it, and the scan ring's sweep line rotates
+    // in sync — all pure functions of sectionProgress(svg), so scrolling
+    // back up retraces the path and un-sweeps the scan exactly.
+    function initGo2(reduceMotion) {
+        const svg = document.querySelector('.decor-go2');
+        if (!svg) return;
+
+        const path = svg.querySelector('.go-path');
+        const marker = svg.querySelector('.go2-marker');
+        const sweep = svg.querySelector('.go2-sweep');
+        if (!path) return;
+
+        const len = path.getTotalLength();
+        const SCX = 192, SCY = 209; // ego-circle centre (approx.)
+
+        function setPose(p) {
+            const t = Math.min(1, Math.max(0, p));
+            const at = t * len;
+            const pt = path.getPointAtLength(at);
+
+            if (marker) {
+                const ahead = path.getPointAtLength(Math.min(len, at + 2));
+                const heading = Math.atan2(ahead.y - pt.y, ahead.x - pt.x) * 180 / Math.PI + 90;
+                marker.setAttribute('transform', 'translate(' + pt.x + ' ' + pt.y + ') rotate(' + heading + ')');
+            }
+
+            path.style.strokeDashoffset = 100 - t * 100;
+
+            if (sweep) sweep.setAttribute('transform', 'rotate(' + (t * 300 - 60) + ' ' + SCX + ' ' + SCY + ')');
+        }
+
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+            setPose(1); // finished: robot at goal, path fully drawn
+            return;
+        }
+
+        function update() { setPose(sectionProgress(svg)); }
+        update();
+        driveOnScroll(svg, update);
+    }
+
+    // Excavator reach envelope: the working-range sweep wedge draws itself
+    // through the arc as the reach study scrolls through view — paced by the
+    // study's own travel (not the tall sheet), reversible on scroll-up.
+    function initMhReach(reduceMotion) {
+        const svg = document.querySelector('.decor-machinehub');
+        if (!svg) return;
+
+        const sweep = svg.querySelector('.mh-reach-sweep');
+        const reach = svg.querySelector('.mh-reach');
+        if (!sweep || !reach) return;
+
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+            sweep.style.strokeDashoffset = 0; // show the finished sweep
+            return;
+        }
+
+        function update() { sweep.style.strokeDashoffset = 100 - sectionProgress(reach) * 100; }
+        update();
+        driveOnScroll(svg, update);
+    }
+
+    // CanSat SBUS signal path: the accent flow line traces MCU -> FC -> ESC
+    // -> motor as the diagram scrolls through view, mirroring the cs-arc /
+    // go-path convention. Paced by the sbus study's own extent, reversible.
+    function initCansatSbus(reduceMotion) {
+        const svg = document.querySelector('.decor-cansat');
+        if (!svg) return;
+
+        const flow = svg.querySelector('.sb-flow');
+        const scope = svg.querySelector('.cs-sbus');
+        if (!flow || !scope) return;
+
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+            flow.style.strokeDashoffset = 0; // show the finished line
+            return;
+        }
+
+        function update() { flow.style.strokeDashoffset = 100 - sectionProgress(scope) * 100; }
         update();
         driveOnScroll(svg, update);
     }

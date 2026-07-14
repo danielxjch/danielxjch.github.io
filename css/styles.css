@@ -139,7 +139,9 @@ body::before {
 .fb-traj,
 .cs-arc,
 .go-path,
-.ex-arc {
+.ex-arc,
+.mh-reach-sweep,
+.sb-flow {
     stroke: var(--highlight-color);
     stroke-width: 1.4;
     opacity: 0.6;
@@ -269,10 +271,16 @@ body::before {
     width: min(460px, 36vw);
 }
 
+/* pulled larger and further into the gutter than the other studies —
+   this one read as too concealed at the old size/opacity. top is tuned
+   so the wheel/bow mechanism (the signature of this study) lands in the
+   open gap between the lead photo and the CAD gallery image, rather
+   than disappearing entirely behind either. */
 .decor-violin {
-    right: -20px;
-    top: 720px;
-    width: min(540px, 42vw);
+    right: -10px;
+    top: 750px;
+    width: min(620px, 46vw);
+    opacity: 0.9;
 }
 
 .decor-machinehub {
@@ -334,7 +342,7 @@ body::before {
 
     .decor-cansat { width: min(340px, 34vw); opacity: 0.7; }
     .decor-go2 { width: min(380px, 38vw); opacity: 0.7; }
-    .decor-violin { width: min(400px, 40vw); opacity: 0.7; }
+    .decor-violin { width: min(460px, 44vw); opacity: 0.78; }
     .decor-machinehub { width: min(320px, 32vw); opacity: 0.7; }
     .decor-excavator { width: min(360px, 36vw); opacity: 0.72; }
 }
@@ -366,7 +374,7 @@ body::before {
 
     .decor-cansat { right: -30px; width: min(300px, 40vw); opacity: 0.6; }
     .decor-go2 { right: -30px; width: min(340px, 44vw); opacity: 0.6; }
-    .decor-violin { right: -30px; width: min(360px, 46vw); opacity: 0.6; }
+    .decor-violin { right: -20px; width: min(400px, 50vw); opacity: 0.68; }
     .decor-machinehub { right: -30px; width: min(300px, 40vw); opacity: 0.6; }
     .decor-excavator { right: -20px; width: min(340px, 44vw); opacity: 0.62; }
 }
@@ -396,7 +404,7 @@ body::before {
        Kept flush to the edge so nothing bleeds past the viewport. */
     .decor-cansat { right: -6px; top: 620px; width: 205px; opacity: 0.5; }
     .decor-go2 { right: -6px; top: 640px; width: 235px; opacity: 0.5; }
-    .decor-violin { right: -6px; top: 640px; width: 245px; opacity: 0.5; }
+    .decor-violin { right: -6px; top: 737px; width: 270px; opacity: 0.58; }
     .decor-machinehub { right: -6px; top: 900px; width: 205px; opacity: 0.5; }
     .decor-excavator { right: -6px; top: 760px; width: 225px; opacity: 0.55; }
 
@@ -1281,6 +1289,14 @@ footer {
     transition: stroke-dashoffset 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.55s;
 }
 
+/* project pages: the traced outline tracks scroll directly
+   (initProjectTrace writes stroke-dashoffset every frame) — no eased
+   transition, so the line never lags behind the scroll position */
+.js .post-view .decor-trace .dec-line,
+.js .post-view .decor-trace .dec-dim {
+    transition: none;
+}
+
 .js .decor-trace .dec-arrow {
     opacity: 0;
     transition: opacity 0.25s ease 0.95s;
@@ -1316,21 +1332,27 @@ footer {
     opacity: 1; /* per-path stroke-opacity keeps these light */
 }
 
-/* the planned path draws in last, after the scan has appeared */
-.js .decor-trace .go-path {
-    stroke-dashoffset: 100;
-    transition: stroke-dashoffset 1.3s cubic-bezier(0.4, 0, 0.2, 1) 1s;
-}
-
-.js .decor-trace.is-drawn .go-path {
-    stroke-dashoffset: 0;
-}
-
 /* scroll-driven curves stay hidden until their driver writes an
    offset: the visitor's own scrolling draws them */
 .js .decor-linkage .fb-traj,
-.js .decor-cansat .cs-arc {
+.js .decor-cansat .cs-arc,
+.js .decor-cansat .sb-flow,
+.js .decor-machinehub .mh-reach-sweep,
+.js .decor-go2 .go-path {
     stroke-dashoffset: 100;
+}
+
+/* Go2 marker + scan sweep: always-on accent, driven by initGo2 */
+.go2-marker path,
+.go2-marker circle {
+    fill: var(--highlight-color);
+    stroke: none;
+}
+
+.go2-sweep {
+    stroke: var(--highlight-color);
+    stroke-width: 1.2;
+    opacity: 0.55;
 }
 
 /* ============================================================
@@ -1430,6 +1452,8 @@ footer {
 
     .js .decor-linkage .fb-traj,
     .js .decor-cansat .cs-arc,
+    .js .decor-cansat .sb-flow,
+    .js .decor-machinehub .mh-reach-sweep,
     .js .decor-trace .go-path {
         stroke-dashoffset: 0;
     }

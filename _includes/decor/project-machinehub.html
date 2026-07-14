@@ -1,9 +1,27 @@
 <div class="section-decor" aria-hidden="true">
-    <!-- Excavator working-equipment study: nested groups preserve every joint. -->
-    <svg class="decor-machinehub decor-excavator decor-sketch decor-trace" viewBox="0 0 520 330" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M24 282 C150 280 344 283 500 281"/>
-        <path class="dec-ghost" stroke-width="0.8" d="M26 286 C174 283 362 287 501 284"/>
+    <!-- Excavator working-equipment study: nested groups preserve every joint
+         (untouched below, at the top of the sheet). Measured against the
+         real page layout: the cylinder/reach/specplate cluster used to sit
+         mostly BEHIND hub-tco-hero.png (cylinder ~42% hidden, reach ~46%
+         hidden, specplate 100% hidden). .mh-notes-cluster now translates
+         that whole group down into the actual open gutter after that
+         screenshot and before the Market Comparisons chart. A fourth
+         study, .mh-retained (a plotted retained-value curve grounded in
+         the app's own Depreciation Curve numbers), sits further down in
+         the gutter between the market-comparison breakdown charts and the
+         Attachment Compatibility gallery. ViewBox extended to fit. -->
+    <svg class="decor-machinehub decor-excavator decor-sketch decor-trace" viewBox="0 0 520 3660" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <g class="mh-notes-divider" transform="translate(0,1030)">
+            <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M24 282 C150 280 344 283 500 281"/>
+            <path class="dec-ghost" stroke-width="0.8" d="M26 286 C174 283 362 287 501 284"/>
+        </g>
 
+        <!-- ex-scope: identity wrapper (no transform) scoping just the
+             excavator's own visual footprint (~300 local units tall) —
+             added so sectionProgress() can target this instead of the
+             full sheet if the boom/stick/bucket cycle needs rescoping
+             (see report: initExcavator's timing). Does not move anything. -->
+        <g class="ex-scope">
         <!-- anchored undercarriage and upper structure -->
         <g class="ex-body">
             <path class="dec-ghost" stroke-width="1" d="M70 244 Q84 218 126 216 L230 217 Q255 222 267 244"/>
@@ -46,5 +64,174 @@
         <path class="dec-dim ex-arc ex-bucket-arc" pathLength="100" stroke-width="1" d="M351 229 A24 24 0 0 1 386 228"/>
         <text x="35" y="34" font-size="10" stroke="none">WORKING EQUIPMENT — KINEMATIC STUDY</text>
         <text x="36" y="50" font-size="8.5" stroke="none">BOOM / STICK / BUCKET — FIXED JOINTS</text>
+        </g>
+
+        <!-- cluster translated down (0,1030) into the open gutter after
+             hub-tco-hero.png; internal coordinates below are unchanged
+             from the original composition, only carried lower by the
+             wrapping transform. -->
+        <g class="mh-notes-cluster" transform="translate(0,1030)">
+        <!-- ============================================================
+             STUDY 2: hydraulic cylinder detail, grounded in the SY50U
+             hydraulics spec (load-sensing, axial-piston pump, 3,989 psi /
+             38 gpm) — the boom/stick/bucket cylinders implied above, drawn
+             out as a mechanical section rather than restated as a screenshot.
+             ============================================================ -->
+        <g class="mh-cylinder">
+            <text x="34" y="322" font-size="9.5" stroke="none">BOOM CYLINDER — SECTION</text>
+            <text x="34" y="335" font-size="7.5" stroke="none">LOAD SENSING · 3,989 PSI MAX</text>
+
+            <path class="dec-fade" stroke-width="0.7" stroke-dasharray="8 4 2 4" d="M38 372 H246"/>
+
+            <circle class="dec-ghost" stroke-width="0.9" cx="47" cy="372" r="10.4"/>
+            <circle class="dec-line" pathLength="100" stroke-width="1.8" cx="47" cy="372" r="10"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.7" d="M41 372 H53 M47 366 V378"/>
+
+            <path class="dec-ghost" stroke-width="0.9" d="M56 365 L69 359 M56 379 L69 385"/>
+            <path class="dec-line" pathLength="100" stroke-width="1.5" d="M55 366 L68 360 M55 378 L68 384"/>
+
+            <path class="dec-ghost" stroke-width="1" d="M67 356 Q63 372 67 388 L145 389 Q150 372 145 355 Z"/>
+            <path class="dec-line" pathLength="100" stroke-width="2.4" d="M68 358 L146 357 Q151 372 146 387 L68 388 Q64 372 68 358Z"/>
+
+            <path class="dec-ghost" stroke-width="0.8" d="M83 344 L96 344 L96 357 L83 357Z"/>
+            <path class="dec-line" pathLength="100" stroke-width="1.5" d="M84 345 L95 345 L95 356 L84 356Z"/>
+            <text x="86" y="341" font-size="7" stroke="none">P</text>
+
+            <path class="dec-ghost" stroke-width="0.8" d="M111 344 L124 344 L124 357 L111 357Z"/>
+            <path class="dec-line" pathLength="100" stroke-width="1.5" d="M112 345 L123 345 L123 356 L112 356Z"/>
+            <text x="114" y="341" font-size="7" stroke="none">T</text>
+
+            <path class="dec-fade" stroke-width="0.6" stroke-dasharray="3 3" d="M120 358 V387"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.9" d="M150 356 V388"/>
+
+            <path class="dec-ghost" stroke-width="0.9" d="M146 364 L227 363 L227 381 L146 382Z"/>
+            <path class="dec-line" pathLength="100" stroke-width="1.7" d="M147 365 L226 364 L226 380 L147 381Z"/>
+
+            <circle class="dec-ghost" stroke-width="0.85" cx="236" cy="372" r="7.3"/>
+            <circle class="dec-line" pathLength="100" stroke-width="1.6" cx="236" cy="372" r="7"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.65" d="M230 372 H242 M236 367 V377"/>
+
+            <path class="dec-dim" pathLength="100" stroke-width="0.7" d="M68 397 H146"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M68 393 V400 M146 393 V400"/>
+            <text x="86" y="410" font-size="7" stroke="none">BORE</text>
+
+            <path class="dec-dim" pathLength="100" stroke-width="0.7" d="M147 397 H226"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M147 393 V400 M226 393 V400"/>
+            <text x="167" y="410" font-size="7" stroke="none">STROKE</text>
+        </g>
+
+        <!-- ============================================================
+             STUDY 3: reach / working-range envelope — the mechanical-
+             drawing translation of the app's own working-range grid
+             (NEAR/MID/FAR × HIGH/GROUND/LOW, hub-lift.png): a classic
+             excavator GA reach diagram instead of the UI screenshot.
+             The mh-reach-sweep wedge is left for a scroll-driven reveal
+             (see report) — its stroke-dashoffset starts undriven so it
+             renders solid until that CSS/JS is wired in.
+             ============================================================ -->
+        <g class="mh-reach">
+            <text x="274" y="322" font-size="9.5" stroke="none">REACH ENVELOPE</text>
+            <text x="274" y="336" font-size="7.5" stroke="none">SEE ATTACHMENT COMPATIBILITY</text>
+
+            <path class="dec-fade" stroke-width="0.8" stroke-dasharray="10 4 2 4" d="M282 440 H500"/>
+            <path class="dec-fade" stroke-width="0.6" stroke-dasharray="6 4" d="M338 440 V335"/>
+            <text x="446" y="434" font-size="7" stroke="none">GRADE LINE</text>
+
+            <circle class="dec-line" pathLength="100" stroke-width="1.6" cx="338" cy="440" r="4"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M330 440 H346 M338 432 V448"/>
+
+            <path class="dec-ghost" stroke-width="1" d="M487 440 A149 149 0 0 0 309 293"/>
+            <path class="dec-line" pathLength="100" stroke-width="1.6" d="M483 440 A145 145 0 0 0 313 297"/>
+
+            <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M338 440 H478"/>
+            <path class="dec-arrow" stroke-width="1" d="M472 436 L479 440 L472 444"/>
+            <text x="392" y="452" font-size="7" stroke="none">MAX REACH</text>
+
+            <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M338 440 L314 302"/>
+            <path class="dec-arrow" stroke-width="1" d="M309 308 L313 300 L319 306"/>
+            <text x="268" y="298" font-size="7" stroke="none" transform="rotate(-79 268 298)">MAX HEIGHT</text>
+
+            <path class="dec-dim" pathLength="100" stroke-width="0.7" d="M338 440 V470"/>
+            <path class="dec-arrow" stroke-width="1" d="M334 464 L338 471 L342 464"/>
+            <text x="344" y="468" font-size="7" stroke="none">DIG DEPTH</text>
+
+            <text x="456" y="399" font-size="6.5" stroke="none">NEAR</text>
+            <text x="422" y="332" font-size="6.5" stroke="none">MID</text>
+            <text x="345" y="302" font-size="6.5" stroke="none">FAR</text>
+
+            <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M338 440 L463 368"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M338 440 L388 304"/>
+            <path class="mh-reach-sweep" pathLength="100" stroke-width="2" d="M463 368 A145 145 0 0 0 388 304"/>
+        </g>
+
+        <!-- ============================================================
+             STUDY 4: spec plate — a title-block-style data card lifted
+             straight from the SY50U spec sheet (Machine Data / Engine /
+             Hydraulics tables), not redrawn UI but the same source numbers
+             set as drafted engineering data.
+             ============================================================ -->
+        <g class="mh-specplate">
+            <path class="dec-ghost" stroke-width="1" d="M31 471 H505 V609 H31Z"/>
+            <path class="dec-line" pathLength="100" stroke-width="1.6" d="M32 472 H504 V608 H32Z"/>
+
+            <text x="40" y="488" font-size="9.5" stroke="none">SY50U — MACHINE DATA</text>
+            <path class="dec-dim" pathLength="100" stroke-width="0.7" d="M32 496 H504"/>
+
+            <path class="dec-dim" pathLength="100" stroke-width="0.5" d="M32 519 H504 M32 541 H504 M32 563 H504 M32 585 H504"/>
+
+            <text x="40" y="511" font-size="7" stroke="none">OPERATING WEIGHT</text>
+            <text x="340" y="513" font-size="8.5" stroke="none">11,707 LBS</text>
+
+            <text x="40" y="533" font-size="7" stroke="none">GROUND PRESSURE</text>
+            <text x="340" y="535" font-size="8.5" stroke="none">4.4 PSI</text>
+
+            <text x="40" y="555" font-size="7" stroke="none">NET POWER</text>
+            <text x="340" y="557" font-size="8.5" stroke="none">45.2 HP @ 2,400 RPM</text>
+
+            <text x="40" y="577" font-size="7" stroke="none">MAIN HYDRAULIC PUMP</text>
+            <text x="340" y="579" font-size="8.5" stroke="none">AXIAL PISTON — VAR. DISPL.</text>
+
+            <text x="40" y="599" font-size="6.5" stroke="none">OPERATING PRESSURE (MAX)</text>
+            <text x="340" y="601" font-size="8.5" stroke="none">3,989 PSI</text>
+        </g>
+        </g>
+
+        <!-- ============================================================
+             STUDY 5: retained-value curve — a plotted redraw of the app's
+             own Depreciation Curve chart (hub-tco-hero.png), using its real
+             modeled series: 100 / 68.3 / 58.4 / 52.6 / 48.7 / 46.0 / 44.0 /
+             42.4 % at Yr 0-7. Sits in the gutter between the market-
+             comparison breakdown charts and the Attachment Compatibility
+             gallery — clean space, not reachable by the notes cluster above.
+             ============================================================ -->
+        <g class="mh-retained">
+            <text x="40" y="3418" font-size="9.5" stroke="none">RETAINED VALUE — MODELED</text>
+            <text x="40" y="3432" font-size="7.5" stroke="none">DEPRECIATION CURVE, 7 YR HOLD</text>
+
+            <path class="dec-ghost" stroke-width="0.9" d="M40 3462 H480 V3600 H40Z"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M40 3462 V3600 H480"/>
+            <path class="dec-fade" stroke-width="0.5" stroke-dasharray="3 3" d="M40 3496.5 H480 M40 3531 H480 M40 3565.5 H480"/>
+
+            <text x="18" y="3465" font-size="6.5" stroke="none">100</text>
+            <text x="24" y="3534" font-size="6.5" stroke="none">50</text>
+            <text x="28" y="3603" font-size="6.5" stroke="none">0</text>
+
+            <text x="36" y="3612" font-size="6.5" stroke="none">YR 0</text>
+            <text x="211" y="3612" font-size="6.5" stroke="none">YR 3</text>
+            <text x="340" y="3612" font-size="6.5" stroke="none">YR 5</text>
+            <text x="466" y="3612" font-size="6.5" stroke="none">YR 7</text>
+
+            <path class="dec-ghost" stroke-width="1" d="M39 3461 L103.9 3505 L166.7 3518.6 L229.6 3526.6 L292.4 3532 L355.3 3535.7 L418.1 3538.5 L481 3540.7"/>
+            <path class="dec-line" pathLength="100" stroke-width="1.8" d="M40 3462 L102.9 3505.8 L165.7 3519.4 L228.6 3527.4 L291.4 3532.8 L354.3 3536.5 L417.1 3539.3 L480 3541.5"/>
+
+            <circle class="dec-line" pathLength="100" stroke-width="1.4" cx="40" cy="3462" r="2"/>
+            <circle class="dec-line" pathLength="100" stroke-width="1.4" cx="228.6" cy="3527.4" r="2"/>
+            <circle class="dec-line" pathLength="100" stroke-width="1.4" cx="480" cy="3541.5" r="2"/>
+
+            <circle class="dec-ghost" stroke-width="0.9" cx="354.3" cy="3536.5" r="4"/>
+            <circle class="dec-line" pathLength="100" stroke-width="1.6" cx="354.3" cy="3536.5" r="3.2"/>
+            <path class="dec-dim" pathLength="100" stroke-width="0.6" d="M354.3 3536.5 L400 3510"/>
+            <text x="402" y="3508" font-size="7" stroke="none">46.0% AT YR 5</text>
+        </g>
     </svg>
 </div>
