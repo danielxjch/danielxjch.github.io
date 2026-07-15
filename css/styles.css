@@ -248,55 +248,19 @@ body::before {
     opacity: 0.75;
 }
 
-/* Project pages: one dominant asset-derived study per page, drawn on
-   the sheet BEHIND all content (like the homepage sections). It sits in
-   the right gutter, dropped well below the summary so it reads beside the
-   galleries/body while the reader is there — photos and captions overlap
-   it for depth, but it is never cropped or run through the copy. */
+/* Project pages: studies are drawn on the sheet BEHIND all content (like
+   the homepage sections), reading beside the galleries/body as the reader
+   scrolls — photos and captions overlap them for depth, but they are
+   never cropped or run through the copy. Vertical placement (`top`) is
+   computed at runtime by initDecorAnchors() in script.js from each svg's
+   data-anchor/data-dy, since a fixed pixel value breaks whenever the page
+   length changes. Horizontal placement (left/right/width/opacity) stays
+   inline on each svg in the decor/project-*.html includes, since it
+   doesn't need to react to content reflow the way top does. */
 .post-view > .section-decor {
     position: absolute;
     inset: 0;
     z-index: -1;
-}
-
-.decor-cansat {
-    right: -60px;
-    top: 720px;
-    width: min(420px, 34vw);
-}
-
-.decor-go2 {
-    right: -60px;
-    top: 800px;
-    width: min(460px, 36vw);
-}
-
-/* pulled larger and further into the gutter than the other studies —
-   this one read as too concealed at the old size/opacity. top is tuned
-   so the wheel/bow mechanism (the signature of this study) lands in the
-   open gap between the lead photo and the CAD gallery image, rather
-   than disappearing entirely behind either. */
-.decor-violin {
-    right: -10px;
-    top: 750px;
-    width: min(620px, 46vw);
-    opacity: 0.9;
-}
-
-.decor-machinehub {
-    right: -60px;
-    top: 1420px;
-    width: min(380px, 30vw);
-}
-
-/* SANY builds excavators (see the hero photo); the boom study drops
-   below the full-width lead image into the right gutter, beside the
-   narrower centred content, where it reads and articulates on scroll. */
-.decor-excavator {
-    right: -40px;
-    top: 960px;
-    width: min(460px, 36vw);
-    opacity: 0.85;
 }
 
 .decor-index {
@@ -340,11 +304,9 @@ body::before {
 
     .decor-index { width: 240px; opacity: 0.5; }
 
-    .decor-cansat { width: min(340px, 34vw); opacity: 0.7; }
-    .decor-go2 { width: min(380px, 38vw); opacity: 0.7; }
-    .decor-violin { width: min(460px, 44vw); opacity: 0.78; }
-    .decor-machinehub { width: min(320px, 32vw); opacity: 0.7; }
-    .decor-excavator { width: min(360px, 36vw); opacity: 0.72; }
+    /* project-page decor: generic quiet-down in the narrow window before
+       the 1300px hide below (per-slug placement lives inline + in JS now) */
+    .post-view .section-decor svg { opacity: 0.7; }
 }
 
 @media (max-width: 1023px) {
@@ -372,11 +334,8 @@ body::before {
 
     .decor-index { width: 200px; opacity: 0.45; }
 
-    .decor-cansat { right: -30px; width: min(300px, 40vw); opacity: 0.6; }
-    .decor-go2 { right: -30px; width: min(340px, 44vw); opacity: 0.6; }
-    .decor-violin { right: -20px; width: min(400px, 50vw); opacity: 0.68; }
-    .decor-machinehub { right: -30px; width: min(300px, 40vw); opacity: 0.6; }
-    .decor-excavator { right: -20px; width: min(340px, 44vw); opacity: 0.62; }
+    /* project-page decor: no rules needed here — already display:none via
+       the 1300px .post-view .section-decor hide below */
 }
 
 @media (max-width: 767px) {
@@ -399,14 +358,8 @@ body::before {
         opacity: 0.5;
     }
 
-    /* project studies sit in the right gutter behind the body copy,
-       quiet and low so the drawing reads without fighting the text.
-       Kept flush to the edge so nothing bleeds past the viewport. */
-    .decor-cansat { right: -6px; top: 620px; width: 205px; opacity: 0.5; }
-    .decor-go2 { right: -6px; top: 640px; width: 235px; opacity: 0.5; }
-    .decor-violin { right: -6px; top: 737px; width: 270px; opacity: 0.58; }
-    .decor-machinehub { right: -6px; top: 900px; width: 205px; opacity: 0.5; }
-    .decor-excavator { right: -6px; top: 760px; width: 225px; opacity: 0.55; }
+    /* project studies: no rules needed here — already display:none via
+       the 1300px .post-view .section-decor hide above */
 
     /* labels are illegible this small — keep only linework */
     .section-decor text {
@@ -1242,6 +1195,18 @@ footer {
 }
 
 /* ============================================================
+   DECOR PLACEMENT (JS-only: initDecorAnchors computes `top` from real
+   content, so without JS there is no correct position to show)
+   ============================================================ */
+.post-view .section-decor {
+    display: none;
+}
+
+.js .post-view .section-decor {
+    display: block;
+}
+
+/* ============================================================
    SCROLL REVEAL (JS adds .is-visible; no-JS never hides)
    ============================================================ */
 .js .reveal {
@@ -1364,6 +1329,11 @@ footer {
    is hidden — decor is a desktop enhancement here, and this keeps the
    page from carrying phantom width on tablet/mobile. */
 @media (max-width: 1300px) {
+    /* .js-prefixed to match (and, by appearing later, beat) the
+       .js .post-view .section-decor { display: block; } placement
+       rule above — otherwise that rule's equal-or-higher specificity
+       would win and defeat this hide on narrow JS-enabled viewports */
+    .js .post-view .section-decor,
     .post-view .section-decor {
         display: none;
     }

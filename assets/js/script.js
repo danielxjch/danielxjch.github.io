@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    initDecorAnchors();
     initMenu();
     initReveal(reduceMotion);
     initDecorTrace(reduceMotion);
@@ -41,6 +42,101 @@ document.addEventListener('DOMContentLoaded', function () {
 
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', onScroll, { passive: true });
+    }
+
+    // Project-page decor placement: studies used to carry hardcoded
+    // document-pixel `top` values, which broke whenever a page's length
+    // changed (content overflowing into the footer, or drifting away from
+    // the section it illustrates). Instead each svg[data-anchor] names a
+    // real content element to sit beside, and this positions it relative
+    // to that element's own layout every time the page reflows.
+    function initDecorAnchors() {
+        const postView = document.querySelector('.post-view');
+        if (!postView) return;
+
+        const decor = postView.querySelector('.section-decor');
+        if (!decor) return;
+
+        const svgs = decor.querySelectorAll('svg[data-anchor]');
+        if (!svgs.length) return;
+
+        // Shorthands resolve within the post page only; anything else is
+        // queried as a raw CSS selector so one-off anchors don't need a
+        // new shorthand added here.
+        function resolveAnchor(key) {
+            if (key === 'summary') return postView.querySelector('.summary');
+            if (key === 'content') return postView.querySelector('.content');
+
+            let m = key.match(/^heading:(\d+)$/);
+            if (m) {
+                const headings = postView.querySelectorAll('.content h2');
+                return headings[Number(m[1]) - 1] || null;
+            }
+
+            m = key.match(/^gallery:(\d+)$/);
+            if (m) {
+                const galleries = postView.querySelectorAll('.content .image-gallery');
+                return galleries[Number(m[1]) - 1] || null;
+            }
+
+            m = key.match(/^video:(\d+)$/);
+            if (m) {
+                const videos = postView.querySelectorAll('.content .youtube-container');
+                return videos[Number(m[1]) - 1] || null;
+            }
+
+            try {
+                return postView.querySelector(key);
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function place() {
+            const postRect = postView.getBoundingClientRect();
+
+            svgs.forEach(function (svg) {
+                const key = svg.getAttribute('data-anchor');
+                const anchorEl = key ? resolveAnchor(key) : null;
+
+                if (!anchorEl) {
+                    // fail safe: an unresolvable anchor hides the study
+                    // rather than leaving it at a stale or default top
+                    svg.style.display = 'none';
+                    return;
+                }
+
+                svg.style.display = '';
+
+                const anchorRect = anchorEl.getBoundingClientRect();
+                const frac = parseFloat(svg.getAttribute('data-frac')) || 0;
+                const dy = parseFloat(svg.getAttribute('data-dy')) || 0;
+
+                const anchorTop = anchorRect.top - postRect.top;
+                const anchorRef = anchorTop + frac * anchorRect.height;
+                let top = anchorRef + dy;
+
+                // never let a study escape below the content into the footer
+                const svgHeight = svg.getBoundingClientRect().height;
+                const maxTop = postView.clientHeight - svgHeight - 24;
+                top = Math.max(0, Math.min(top, maxTop));
+
+                svg.style.top = top + 'px';
+            });
+        }
+
+        place();
+        window.addEventListener('load', place);
+
+        if ('ResizeObserver' in window) {
+            let ticking = false;
+            const ro = new ResizeObserver(function () {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () { ticking = false; place(); });
+            });
+            ro.observe(postView);
+        }
     }
 
     // Mobile menu

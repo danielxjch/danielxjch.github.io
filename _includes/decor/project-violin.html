@@ -10,7 +10,7 @@
          strings, so only the bow ever touches them — not a symmetric
          stadium with two ambiguous crossings. vs-flow / vs-wheel-a /
          vs-wheel-b are driven by script.js. -->
-    <svg class="decor-violin decor-sketch decor-trace" viewBox="0 0 440 310" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="decor-violin decor-sketch decor-trace" data-anchor="heading:1" data-dy="-30" viewBox="0 0 440 310" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="right:-10px; width:min(620px,46vw); opacity:0.9;">
         <!-- body outline (two bouts + waist), pencil underlay + line -->
         <path class="dec-ghost" stroke-width="0.85" stroke-opacity="0.4" d="M166 29 Q111 62 126 122 Q140 151 123 184 Q109 245 170 283 M274 29 Q329 62 314 122 Q300 151 317 184 Q331 245 270 283"/>
         <path class="dec-line" pathLength="100" stroke-width="2.1" stroke-opacity="0.85" d="M174 30 Q126 58 136 112 Q143 139 128 174 Q117 232 174 274 M266 30 Q314 58 304 112 Q297 139 312 174 Q323 232 266 274"/>
@@ -74,7 +74,7 @@
 
     <!-- ESP32 / servo channel pin map, grounded in the ledcSetup() /
          ledcAttachPin() calls in the code block below -->
-    <svg class="decor-violin-pinmap decor-sketch decor-trace" viewBox="0 0 200 260" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:130px; left:-150px; width:min(270px,22vw);">
+    <svg class="decor-violin-pinmap decor-sketch decor-trace" data-anchor="summary" data-dy="380" viewBox="0 0 200 260" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:-150px; width:min(270px,22vw);">
         <rect class="dec-ghost" x="54" y="49" width="92" height="142" stroke-width="0.85" stroke-opacity="0.4"/>
         <rect class="dec-line" pathLength="100" x="55" y="50" width="90" height="140" stroke-width="1.8" stroke-opacity="0.85"/>
         <text x="66" y="72" font-size="8" stroke="none">ESP32</text>
@@ -104,7 +104,7 @@
     </svg>
 
     <!-- open-string tuning reference: real violin frequencies -->
-    <svg class="decor-violin-strings decor-sketch decor-trace" viewBox="0 0 190 250" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:170px; right:-95px; width:min(230px,19vw);">
+    <svg class="decor-violin-strings decor-sketch decor-trace" data-anchor="summary" data-dy="550" viewBox="0 0 190 250" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; right:-95px; width:min(230px,19vw);">
         <path class="dec-ghost" stroke-width="0.7" stroke-opacity="0.4" d="M40 30 V220"/>
         <path class="dec-line" pathLength="100" stroke-width="1.6" stroke-opacity="0.82" d="M40 32 V218"/>
         <path class="dec-dim" pathLength="100" stroke-width="0.85" d="M32 50 H48 M32 100 H48 M32 150 H48 M32 200 H48"/>
@@ -117,9 +117,16 @@
         <text x="15" y="238" font-size="7.5" stroke="none">G–D–A–E, PERFECT 5THS</text>
     </svg>
 
-    <!-- servo PWM waveform: min/max pulse widths lifted straight from
-         ONEmS_COUNTS / min_counts / max_counts in the code block -->
-    <svg class="decor-violin-pwm decor-sketch decor-trace" viewBox="0 0 300 190" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:560px; left:-170px; width:min(320px,26vw);">
+    {% comment %}
+    Servo PWM waveform study — kept for its artwork but not currently
+    placed: the violin page is short (~3250px of real content) and 11
+    studies competed for a handful of gutter slots. Curated down to 7
+    that spread cleanly across the page's four sections without
+    crowding; this one lost out to the fingerboard study for the
+    Fingering-section neighborhood. Restore by giving it a data-anchor
+    (e.g. heading:2) + data-dy and re-checking for collisions with its
+    neighbors before re-enabling.
+    <svg class="decor-violin-pwm decor-sketch decor-trace" viewBox="0 0 300 190" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:-170px; width:min(320px,26vw);">
         <path class="dec-ghost" stroke-width="0.7" stroke-opacity="0.4" d="M10 140 H290"/>
         <path class="dec-line" pathLength="100" stroke-width="1.4" stroke-opacity="0.8" d="M10 141 H290"/>
         <path class="dec-line" pathLength="100" stroke-width="1.9" stroke-opacity="0.88" d="M20 140 V64 H44 V140"/>
@@ -134,10 +141,11 @@
         <text x="220" y="80" font-size="7.5" stroke="none">12-BIT LEDC</text>
         <text x="14" y="106" font-size="8.5" stroke="none">ledcWrite() SWEEP</text>
     </svg>
+    {% endcomment %}
 
     <!-- LARGE signature study: fingerboard fret map for the 4 fingering
          servos, tying the CAD neck geometry to cover()/lift() in the code -->
-    <svg class="decor-violin-fingerboard decor-sketch decor-trace" viewBox="0 0 260 480" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:1750px; left:-190px; width:min(480px,38vw);">
+    <svg class="decor-violin-fingerboard decor-sketch decor-trace" data-anchor="heading:2" data-dy="40" viewBox="0 0 260 480" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:-190px; width:min(480px,38vw);">
         <path class="dec-ghost" stroke-width="0.9" stroke-opacity="0.4" d="M70 58 H230 M70 420 Q150 434 230 420"/>
         <path class="dec-line" pathLength="100" stroke-width="2" stroke-opacity="0.85" d="M72 60 H228"/>
         <path class="dec-line" pathLength="100" stroke-width="1.6" stroke-opacity="0.8" d="M72 418 Q150 432 228 418"/>
@@ -186,7 +194,7 @@
 
     <!-- UDP packet structure: 'T' sync / 'G' go, straight from
          handleUDPServer() / checkUDP() -->
-    <svg class="decor-violin-udp decor-sketch decor-trace" viewBox="0 0 260 170" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:1420px; right:-130px; width:min(280px,23vw);">
+    <svg class="decor-violin-udp decor-sketch decor-trace" data-anchor="heading:3" data-dy="10" viewBox="0 0 260 170" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; right:-130px; width:min(280px,23vw);">
         <text x="20" y="18" font-size="8.5" stroke="none">UDP :2808 — 192.168.1.63</text>
         <path class="dec-ghost" stroke-width="0.7" stroke-opacity="0.4" d="M20 30 H236 V60 H20 Z"/>
         <path class="dec-line" pathLength="100" stroke-width="1.8" stroke-opacity="0.85" d="M20 32 H236 V60 H20 Z"/>
@@ -206,8 +214,16 @@
         <text x="20" y="160" font-size="7.5" stroke="none">handleUDPServer() / checkUDP()</text>
     </svg>
 
-    <!-- string vibration mode shapes: fundamental + 2nd + 3rd harmonic -->
-    <svg class="decor-violin-harmonics decor-sketch decor-trace" viewBox="0 0 260 220" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:2500px; right:-115px; width:min(300px,24vw);">
+    {% comment %}
+    String-vibration-mode (harmonics) study — kept for its artwork but
+    not currently placed; cut in the same curation pass as the PWM
+    study above, for the same reason (short page, only 7 of 11 studies
+    fit without crowding the gutters). Its natural neighborhood is the
+    Bowing section, but that's already carrying the signature bowing
+    sketch and the bow-force study. Restore with a data-anchor (e.g.
+    heading:1 with a larger data-dy than decor-violin-bowforce's) if
+    the page grows enough to give it room.
+    <svg class="decor-violin-harmonics decor-sketch decor-trace" viewBox="0 0 260 220" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; right:-115px; width:min(300px,24vw);">
         <path class="dec-fade" stroke-width="0.6" stroke-dasharray="5 4" d="M30 60 H230 M30 105 H230 M30 155 H230"/>
         <circle class="dec-dim" cx="30" cy="60" r="2" fill="currentColor" stroke="none"/>
         <circle class="dec-dim" cx="230" cy="60" r="2" fill="currentColor" stroke="none"/>
@@ -230,9 +246,10 @@
         <text x="24" y="190" font-size="8.5" stroke="none">STRING MODE SHAPES</text>
         <text x="24" y="204" font-size="7.5" stroke="none">FIXED AT NUT / BRIDGE</text>
     </svg>
+    {% endcomment %}
 
     <!-- playSequence() note-order timing study: real delay() values -->
-    <svg class="decor-violin-timing decor-sketch decor-trace" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:2950px; left:-175px; width:min(320px,26vw);">
+    <svg class="decor-violin-timing decor-sketch decor-trace" data-anchor="heading:4" data-dy="100" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:-175px; width:min(320px,26vw);">
         <path class="dec-ghost" stroke-width="0.7" stroke-opacity="0.4" d="M20 140 H305"/>
         <path class="dec-line" pathLength="100" stroke-width="1.5" stroke-opacity="0.82" d="M20 141 H305"/>
         <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M20 134 V148 M93 134 V148 M138 134 V148 M300 134 V148"/>
@@ -248,8 +265,15 @@
         <text x="20" y="184" font-size="7.5" stroke="none">delay() VALUES, ms, NOT TO SCALE</text>
     </svg>
 
-    <!-- laser-cut acrylic bracket GA: dims + kerf note -->
-    <svg class="decor-violin-bracket decor-sketch decor-trace" viewBox="0 0 220 190" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:3600px; right:-90px; width:min(280px,23vw);">
+    {% comment %}
+    Laser-cut acrylic bracket GA — kept for its artwork but not
+    currently placed; same curation pass as the PWM and harmonics
+    studies above (short page, 7 of 11 studies fit). It's the least
+    section-specific of the mechanical detail studies (a generic
+    structural bracket, not tied to one heading), which made it the
+    easiest to cut. Restore with a data-anchor if a later revision adds
+    enough content to open up a slot.
+    <svg class="decor-violin-bracket decor-sketch decor-trace" viewBox="0 0 220 190" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; right:-90px; width:min(280px,23vw);">
         <path class="dec-ghost" stroke-width="0.8" stroke-opacity="0.4" d="M30 30 H150 V70 H90 V150 H30 Z"/>
         <path class="dec-line" pathLength="100" stroke-width="1.9" stroke-opacity="0.86" d="M31 31 H149 V69 H89 V149 H31 Z"/>
 
@@ -269,9 +293,10 @@
         <text x="30" y="168" font-size="7.5" stroke="none">3mm CAST ACRYLIC</text>
         <text x="30" y="180" font-size="7.5" stroke="none">KERF COMP +0.15mm</text>
     </svg>
+    {% endcomment %}
 
     <!-- invented-but-plausible marginalia: bow force vs. tone quality -->
-    <svg class="decor-violin-bowforce decor-sketch decor-trace" viewBox="0 0 240 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:4200px; left:-160px; width:min(300px,24vw);">
+    <svg class="decor-violin-bowforce decor-sketch decor-trace" data-anchor="heading:1" data-dy="100" viewBox="0 0 240 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:-160px; width:min(300px,24vw);">
         <path class="dec-ghost" stroke-width="0.7" stroke-opacity="0.4" d="M30 160 H210 M30 160 V30"/>
         <path class="dec-line" pathLength="100" stroke-width="1.6" stroke-opacity="0.82" d="M30 161 H210"/>
         <path class="dec-line" pathLength="100" stroke-width="1.6" stroke-opacity="0.82" d="M30 160 V30"/>
@@ -289,8 +314,16 @@
         <text x="20" y="184" font-size="7" stroke="none">SCRATCH &#8594; CLEAR &#8594; CHOKE</text>
     </svg>
 
-    <!-- four-finger servo linkage close-up: horn / arm / pad against string -->
-    <svg class="decor-violin-linkage decor-sketch decor-trace" viewBox="0 0 220 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; top:4500px; right:-100px; width:min(300px,25vw);">
+    {% comment %}
+    Four-finger servo linkage close-up — kept for its artwork but not
+    currently placed; final cut of the curation pass, for the same
+    reason as the PWM/harmonics/bracket studies above. Its natural
+    neighborhood (Fingering) is already carrying the large fingerboard
+    signature study, which alone runs from the Fingering heading well
+    into the Playing-in-an-ensemble section — there was no clean gap
+    left beside it on either side without crowding. Restore with a
+    data-anchor if the Fingering section grows.
+    <svg class="decor-violin-linkage decor-sketch decor-trace" viewBox="0 0 220 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; right:-100px; width:min(300px,25vw);">
         <path class="dec-ghost" stroke-width="0.8" stroke-opacity="0.4" d="M20 30 H70 V70 H20 Z"/>
         <path class="dec-line" pathLength="100" stroke-width="1.8" stroke-opacity="0.85" d="M21 31 H69 V69 H21 Z"/>
         <text x="24" y="54" font-size="7" stroke="none">SERVO</text>
@@ -313,4 +346,5 @@
         <text x="16" y="176" font-size="8" stroke="none">FINGER LINKAGE — cover()/lift()</text>
         <text x="16" y="190" font-size="7" stroke="none">SERVO HORN &#8594; ARM &#8594; PAD</text>
     </svg>
+    {% endcomment %}
 </div>
