@@ -92,8 +92,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
+        // The reading column defines the gutters. Every study sits in a
+        // gutter and bleeds outward off the sheet; it must never cover this
+        // column. Measured once per pass so a font swap / resize re-settles.
+        const contentEl = postView.querySelector('.content');
+
         function place() {
             const postRect = postView.getBoundingClientRect();
+            const colRect = contentEl ? contentEl.getBoundingClientRect() : null;
 
             svgs.forEach(function (svg) {
                 const key = svg.getAttribute('data-anchor');
@@ -117,11 +123,32 @@ document.addEventListener('DOMContentLoaded', function () {
                 let top = anchorRef + dy;
 
                 // never let a study escape below the content into the footer
-                const svgHeight = svg.getBoundingClientRect().height;
-                const maxTop = postView.clientHeight - svgHeight - 24;
+                const svgRect = svg.getBoundingClientRect();
+                const maxTop = postView.clientHeight - svgRect.height - 24;
                 top = Math.max(0, Math.min(top, maxTop));
 
                 svg.style.top = top + 'px';
+
+                // Horizontal gutter policy: data-side pins the study's inner
+                // edge to the reading column's edge; the body extends outward
+                // into the gutter and bleeds off the sheet. data-peek is the
+                // signed overlap of that inner edge past the column edge —
+                // positive reaches into the text, negative opens a gutter gap
+                // (default 0 = flush). Studies without data-side keep whatever
+                // left/right their include declares inline.
+                const side = svg.getAttribute('data-side');
+                if (colRect && (side === 'left' || side === 'right')) {
+                    const peek = parseFloat(svg.getAttribute('data-peek')) || 0;
+                    if (side === 'right') {
+                        const colRight = colRect.right - postRect.left;
+                        svg.style.left = (colRight - peek) + 'px';
+                        svg.style.right = 'auto';
+                    } else {
+                        const colLeft = colRect.left - postRect.left;
+                        svg.style.right = (postRect.width - (colLeft + peek)) + 'px';
+                        svg.style.left = 'auto';
+                    }
+                }
             });
         }
 

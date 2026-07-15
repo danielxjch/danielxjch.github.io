@@ -10,7 +10,7 @@
          strings, so only the bow ever touches them — not a symmetric
          stadium with two ambiguous crossings. vs-flow / vs-wheel-a /
          vs-wheel-b are driven by script.js. -->
-    <svg class="decor-violin decor-sketch decor-trace" data-anchor="heading:1" data-dy="-30" viewBox="0 0 440 310" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="right:-10px; width:min(620px,46vw); opacity:0.9;">
+    <svg class="decor-violin decor-sketch decor-trace" data-anchor="heading:1" data-dy="-30" data-side="right" viewBox="0 0 440 310" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="width:min(400px,32vw); opacity:0.9;">
         <!-- body outline (two bouts + waist), pencil underlay + line -->
         <path class="dec-ghost" stroke-width="0.85" stroke-opacity="0.4" d="M166 29 Q111 62 126 122 Q140 151 123 184 Q109 245 170 283 M274 29 Q329 62 314 122 Q300 151 317 184 Q331 245 270 283"/>
         <path class="dec-line" pathLength="100" stroke-width="2.1" stroke-opacity="0.85" d="M174 30 Q126 58 136 112 Q143 139 128 174 Q117 232 174 274 M266 30 Q314 58 304 112 Q297 139 312 174 Q323 232 266 274"/>
@@ -26,15 +26,15 @@
         <text x="254" y="144" font-size="8.5" stroke="none">BRIDGE</text>
         <path class="dec-dim" pathLength="100" stroke-width="0.75" d="M252 147 L238 150"/>
 
-        <!-- rosin-coated fishing-line LOOP: the top run is the single BOW
-             crossing the strings at 90deg, directly between the two wheel
-             rims; the return run sweeps below in one smooth bowl, clear of
-             the strings, so it never makes a second crossing. Both wheels
-             sit on the same (upper) side of the bow. -->
-        <path class="dec-ghost" stroke-width="1" stroke-opacity="0.38" d="M175 160 L265 160 A18 18 0 0 1 282 178 C291 208 264 281 220 281 C176 281 149 208 158 178 A18 18 0 0 1 175 160 Z"/>
-        <path class="vs-loop dec-line" pathLength="100" stroke-width="1.8" stroke-opacity="0.85" d="M176 162 L264 162 A16 16 0 0 1 280 178 C288 206 262 278 220 278 C178 278 152 206 160 178 A16 16 0 0 1 176 162 Z"/>
+        <!-- rosin-coated fishing-line LOOP as a taut belt around the two
+             motor wheels — the wheels ARE its only axes, so it never
+             sweeps down through the body. Both horizontal runs cross the
+             vertical string at 90deg; the top run is the active bow
+             contact, the bottom run is the return. -->
+        <path class="dec-ghost" stroke-width="1" stroke-opacity="0.38" d="M176 161 L264 161 A17 17 0 0 1 264 195 L176 195 A17 17 0 0 1 176 161 Z"/>
+        <path class="vs-loop dec-line" pathLength="100" stroke-width="1.8" stroke-opacity="0.85" d="M176 163 L264 163 A15 15 0 0 1 264 193 L176 193 A15 15 0 0 1 176 163 Z"/>
         <!-- accent: the travelling rosin line (offset animated on scroll) -->
-        <path class="vs-flow" d="M176 162 L264 162 A16 16 0 0 1 280 178 C288 206 262 278 220 278 C178 278 152 206 160 178 A16 16 0 0 1 176 162 Z"/>
+        <path class="vs-flow" d="M176 163 L264 163 A15 15 0 0 1 264 193 L176 193 A15 15 0 0 1 176 163 Z"/>
 
         <!-- two motor wheels, straddling the string span (opposite sides
              of the string), both on the same side of the bow -->
@@ -59,22 +59,20 @@
         <path class="dec-dim" pathLength="100" stroke-width="0.75" d="M186 151 L212 160"/>
 
         <!-- travel arrows: bow run and return run move opposite ways -->
-        <path class="dec-arrow" stroke-width="1.15" d="M202 158 L194 162 L202 166"/>
-        <path class="dec-arrow" stroke-width="1.15" d="M246 190 L250 198 L254 190"/>
+        <path class="dec-arrow" stroke-width="1.15" d="M202 159 L194 163 L202 167"/>
+        <path class="dec-arrow" stroke-width="1.15" d="M238 189 L246 193 L238 197"/>
         <text x="118" y="206" font-size="9" stroke="none">ROSIN-COATED FISHING-LINE LOOP</text>
         <text x="118" y="219" font-size="8.5" stroke="none">CONTINUOUS TRAVEL &#8212; NO RESET</text>
 
-        <!-- fingering servos above the neck (from the build photo) -->
-        <path class="dec-dim" pathLength="100" stroke-width="0.9" stroke-opacity="0.6" d="M60 250 H98 V232 H60 Z M108 250 H146 V232 H108 Z"/>
-        <text x="60" y="268" font-size="8.5" stroke="none">FINGERING SERVOS &#215;4</text>
-
+        <!-- (fingering is its own study below — this bowing sheet stays
+             about the bow, no stray servo blocks floating off the neck) -->
         <path class="dec-fade" stroke-width="0.7" stroke-opacity="0.5" stroke-dasharray="7 5" d="M220 28 V282"/>
         <text x="42" y="298" font-size="10" stroke="none">BOWING STUDY — TOP VIEW / CONTINUOUS ROSIN LINE</text>
     </svg>
 
     <!-- ESP32 / servo channel pin map, grounded in the ledcSetup() /
          ledcAttachPin() calls in the code block below -->
-    <svg class="decor-violin-pinmap decor-sketch decor-trace" data-anchor="summary" data-dy="380" viewBox="0 0 200 260" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:-150px; width:min(270px,22vw);">
+    <svg class="decor-violin-pinmap decor-sketch decor-trace" data-anchor="summary" data-dy="380" data-side="left" viewBox="0 0 200 260" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; width:min(270px,22vw);">
         <rect class="dec-ghost" x="54" y="49" width="92" height="142" stroke-width="0.85" stroke-opacity="0.4"/>
         <rect class="dec-line" pathLength="100" x="55" y="50" width="90" height="140" stroke-width="1.8" stroke-opacity="0.85"/>
         <text x="66" y="72" font-size="8" stroke="none">ESP32</text>
@@ -104,7 +102,7 @@
     </svg>
 
     <!-- open-string tuning reference: real violin frequencies -->
-    <svg class="decor-violin-strings decor-sketch decor-trace" data-anchor="summary" data-dy="550" viewBox="0 0 190 250" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; right:-95px; width:min(230px,19vw);">
+    <svg class="decor-violin-strings decor-sketch decor-trace" data-anchor="summary" data-dy="550" data-side="right" viewBox="0 0 190 250" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; width:min(230px,19vw);">
         <path class="dec-ghost" stroke-width="0.7" stroke-opacity="0.4" d="M40 30 V220"/>
         <path class="dec-line" pathLength="100" stroke-width="1.6" stroke-opacity="0.82" d="M40 32 V218"/>
         <path class="dec-dim" pathLength="100" stroke-width="0.85" d="M32 50 H48 M32 100 H48 M32 150 H48 M32 200 H48"/>
@@ -145,7 +143,7 @@
 
     <!-- LARGE signature study: fingerboard fret map for the 4 fingering
          servos, tying the CAD neck geometry to cover()/lift() in the code -->
-    <svg class="decor-violin-fingerboard decor-sketch decor-trace" data-anchor="heading:2" data-dy="40" viewBox="0 0 260 480" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:-190px; width:min(480px,38vw);">
+    <svg class="decor-violin-fingerboard decor-sketch decor-trace" data-anchor="heading:2" data-dy="40" data-side="left" viewBox="0 0 260 480" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; width:min(320px,26vw);">
         <path class="dec-ghost" stroke-width="0.9" stroke-opacity="0.4" d="M70 58 H230 M70 420 Q150 434 230 420"/>
         <path class="dec-line" pathLength="100" stroke-width="2" stroke-opacity="0.85" d="M72 60 H228"/>
         <path class="dec-line" pathLength="100" stroke-width="1.6" stroke-opacity="0.8" d="M72 418 Q150 432 228 418"/>
@@ -194,7 +192,7 @@
 
     <!-- UDP packet structure: 'T' sync / 'G' go, straight from
          handleUDPServer() / checkUDP() -->
-    <svg class="decor-violin-udp decor-sketch decor-trace" data-anchor="heading:3" data-dy="10" viewBox="0 0 260 170" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; right:-130px; width:min(280px,23vw);">
+    <svg class="decor-violin-udp decor-sketch decor-trace" data-anchor="heading:3" data-dy="10" data-side="right" viewBox="0 0 260 170" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; width:min(280px,23vw);">
         <text x="20" y="18" font-size="8.5" stroke="none">UDP :2808 — 192.168.1.63</text>
         <path class="dec-ghost" stroke-width="0.7" stroke-opacity="0.4" d="M20 30 H236 V60 H20 Z"/>
         <path class="dec-line" pathLength="100" stroke-width="1.8" stroke-opacity="0.85" d="M20 32 H236 V60 H20 Z"/>
@@ -249,7 +247,7 @@
     {% endcomment %}
 
     <!-- playSequence() note-order timing study: real delay() values -->
-    <svg class="decor-violin-timing decor-sketch decor-trace" data-anchor="heading:4" data-dy="100" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:-175px; width:min(320px,26vw);">
+    <svg class="decor-violin-timing decor-sketch decor-trace" data-anchor="heading:4" data-dy="100" data-side="left" viewBox="0 0 320 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; width:min(300px,24vw);">
         <path class="dec-ghost" stroke-width="0.7" stroke-opacity="0.4" d="M20 140 H305"/>
         <path class="dec-line" pathLength="100" stroke-width="1.5" stroke-opacity="0.82" d="M20 141 H305"/>
         <path class="dec-dim" pathLength="100" stroke-width="0.8" d="M20 134 V148 M93 134 V148 M138 134 V148 M300 134 V148"/>
@@ -296,7 +294,7 @@
     {% endcomment %}
 
     <!-- invented-but-plausible marginalia: bow force vs. tone quality -->
-    <svg class="decor-violin-bowforce decor-sketch decor-trace" data-anchor="heading:1" data-dy="100" viewBox="0 0 240 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; left:-160px; width:min(300px,24vw);">
+    <svg class="decor-violin-bowforce decor-sketch decor-trace" data-anchor="heading:1" data-dy="100" data-side="left" viewBox="0 0 240 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="position:absolute; width:min(300px,24vw);">
         <path class="dec-ghost" stroke-width="0.7" stroke-opacity="0.4" d="M30 160 H210 M30 160 V30"/>
         <path class="dec-line" pathLength="100" stroke-width="1.6" stroke-opacity="0.82" d="M30 161 H210"/>
         <path class="dec-line" pathLength="100" stroke-width="1.6" stroke-opacity="0.82" d="M30 160 V30"/>
