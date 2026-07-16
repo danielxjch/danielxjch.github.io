@@ -109,6 +109,9 @@ body::before {
 .section-decor text {
     font-family: var(--font-mono);
     fill: currentColor;
+    /* pencil annotations, not content: kept well below body/heading ink so
+       the drawings' labels never read as a second column of real text */
+    fill-opacity: 0.5;
     letter-spacing: 0.06em;
 }
 
@@ -158,6 +161,15 @@ body::before {
     stroke-dasharray: 7 11;
 }
 
+/* contact transmission: the outgoing signal pulse whose dash offset the
+   scroll driver animates, so the beam travels off the sheet as you read */
+.ct-wave {
+    stroke: var(--highlight-color);
+    stroke-width: 1.6;
+    opacity: 0.7;
+    stroke-dasharray: 5 9;
+}
+
 /* ------------------------------------------------------------
    QUIET ZONES — paper-colored halos keep body copy readable while
    the drawings run underneath; cards and photos clip them outright
@@ -193,11 +205,11 @@ body::before {
     pointer-events: none;
 }
 
-/* the hero copy sits on the centerpiece sketch — quieter mask so
-   the drawing still reads through around the text */
+/* the hero copy sits on the centerpiece sketch — firmer paper halo so
+   the name/description read as the top layer, drawing still shows through */
 .hero-section .text::before {
-    opacity: 0.6;
-    box-shadow: 0 0 24px 16px var(--background-color);
+    opacity: 0.72;
+    box-shadow: 0 0 30px 22px var(--background-color);
 }
 
 /* --- placement: dominant studies mid-sheet, content overlaps them --- */
@@ -207,7 +219,7 @@ body::before {
     left: calc(50% - 470px);
     top: 30px;
     width: min(860px, 96vw);
-    opacity: 0.68; /* halo under the copy keeps it readable */
+    opacity: 0.58; /* recede behind the copy; halo + label fade do the rest */
 }
 
 .decor-h2 {

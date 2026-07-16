@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
     initGo2(reduceMotion);
     initMhReach(reduceMotion);
     initCansatSbus(reduceMotion);
+    initChuteSway(reduceMotion);
+    initContactSignal(reduceMotion);
 
     // 0..1 progress of a section through the viewport (symmetric both
     // scroll directions, stable under fast scroll: pure function of layout)
@@ -548,6 +550,41 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function update() { flow.style.strokeDashoffset = 100 - sectionProgress(scope) * 100; }
+        update();
+        driveOnScroll(svg, update);
+    }
+
+    // Hero CanSat chute: the payload swings under its canopy as the hero
+    // scrolls — a gentle pendulum about the canopy apex, reversible.
+    function initChuteSway(reduceMotion) {
+        const svg = document.querySelector('.decor-h2');
+        const section = document.querySelector('.hero-section');
+        if (!svg || !section || reduceMotion || !('IntersectionObserver' in window)) return;
+
+        const swing = svg.querySelector('.h2-swing');
+        if (!swing) return;
+
+        const PX = 94, PY = 11; // canopy apex in viewBox units
+        function update() {
+            const angle = Math.sin(sectionProgress(section) * Math.PI * 2) * 2.6;
+            swing.setAttribute('transform', 'rotate(' + angle + ' ' + PX + ' ' + PY + ')');
+        }
+        update();
+        driveOnScroll(svg, update);
+    }
+
+    // Contact transmission: the Yagi's beam pulse travels off the sheet as
+    // the contact section scrolls — dash offset rides scroll, reverses on
+    // scroll-up, same convention as the violin's vs-flow loop.
+    function initContactSignal(reduceMotion) {
+        const svg = document.querySelector('.decor-c1');
+        const section = document.getElementById('contact');
+        if (!svg || !section || reduceMotion || !('IntersectionObserver' in window)) return;
+
+        const wave = svg.querySelector('.ct-wave');
+        if (!wave) return;
+
+        function update() { wave.style.strokeDashoffset = (-sectionProgress(section) * 240) + ''; }
         update();
         driveOnScroll(svg, update);
     }
