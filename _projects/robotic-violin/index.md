@@ -8,136 +8,32 @@ skills:
   - Electronics
   - Breadboarding
   - Laser Cutting
-
 main-image: /violin.png
 decor: violin
 ---
+
+The robotic violin was built during the University of Pennsylvania's ESAP robotics program, a course run by Dr. Mark Yim and modeled on a graduate-level Penn robotics class, as one instrument in a synchronized robotic ensemble. Working as a two-person team, we bought an old violin off Facebook Marketplace and built the whole machine in under a week, tuning it to play a recognizable arrangement of "Demons" by Imagine Dragons for the final demonstration.
+
 ---
-## CAD
+## Bowing
+Bowing is the hard part of any robotic string instrument: you need continuous, even contact to draw a sustained note. Instead of a conventional bow, we ran a **continuous loop of rosined fishing line** between two motors, riding across a single string. The motors drove the loop around endlessly, so the string was always being bowed. The line's natural slack let it conform to the string, and a spring held it in place to supply steady bow pressure.
+
+Getting a clean tone came down to balancing the tension in the fishing-line loop against the spring pressure on the string. One detail mattered more than expected: the knot joining the loop. Left as it was, it would catch and pluck the string each time it came around, so we fused and smoothed it with a soldering iron until it passed silently.
+
+---
+## Fingering
+Pitch is set by a **servo array positioned along one string**. Each servo arm presses the string directly down onto the fingerboard, padded with hot glue, at a fixed position marked with masking tape, so once the open string is tuned, each servo lands a specific note. The mechanism was designed around exactly the notes the arrangement needed, covering a bit more than an octave within its key.
+
+Only one note is fully held at a time, but the servo timing overlaps to imitate how a real violinist works: the next, lower note begins moving toward the string while the current, higher note is still held, so releasing the higher finger lets the already-prepared one engage without an audible gap.
+
 {% include image-gallery.html images="Violin CAD.PNG" height="400" %}
----
-## Video
-{% include youtube-video.html id="mOd76fNrCOg" autoplay= "false"%}
----
-## Code
-```C
-#include <WiFi.h>
-#include <WiFiUdp.h>
-#define ONEmS_COUNTS ((1 << 12) * 50 / 1000)
-void setup() {
- Serial.begin(115200);
- WiFi.begin("TP-Link_E0C8", "52665134");
- WiFi.config(IPAddress(192, 168, 1, 63),
- IPAddress(192, 168, 1, 1),
- IPAddress(255, 255, 255, 0));
- while (WiFi.status() != WL_CONNECTED) {
- delay(500);
- Serial.print(".");
- }
- Serial.println("WiFi connected");
- UDPTestServer.begin(2808); // 2808 arbitrary UDP port#
-}
-void loop() {
- handleUDPServer();
- delay(1);
-}
-void handleUDPServer() {
- char packetBuffer[100]; // can be up to 65535
- int cb = UDPTestServer.parsePacket();
- if (cb) {
- int len = UDPTestServer.read(packetBuffer, 100);
- packetBuffer[len] = 0;
- Serial.printf("%s", packetBuffer);
- }
-}
-//Sync
-void loop() {
- int msg = checkUDP();// do nothing
- if (msg == 0);// test sync "T"
- else if (msg == 1) {
- playOnenote1sec();
- }
- // Go message "G"
- else if (msg == 2) {
- startSong();
- }
- delay(1);
-}
-int checkUDP() {
- char packetBuffer[100];
- int cb = UDPTestServer.parsePacket();
- if (cb) {
- int len = UDPTestServer.read(packetBuffer, 100);
- packetBuffer[len] = 0;
- Serial.printf("%s", packetBuffer);
- if (packetBuffer[0] == 'T') return 1;
- if (packetBuffer[0] == 'G') return 2;
- }
- return 0;
-}
- //Note
- int min_counts = ONEmS_COUNTS; // conservative is 1mS for minimum
-int max_counts = 1.5 * ONEmS_COUNTS;
-void setup() {
- ledcSetup(0, 50, 12);
- ledcAttachPin(0, 0);
- ledcSetup(1, 50, 12);
- ledcAttachPin(1, 1);
- ledcSetup(2, 50, 12);
- ledcAttachPin(5, 2);
- ledcSetup(3, 50, 12);
- ledcAttachPin(4, 3);
- Serial.begin(9600);
-}
-//cover/ open
-void cover(int chan) {
- // code for different servos:
- for (int i = min_counts; i < max_counts; i++) {
- ledcWrite(chan, i); // sweep servo forward
- delayMicroseconds(1000); // need this 20mS for 1 cycle at 50Hz
- }
-}
-void lift(int chan) {
- for (int j = max_counts; j > min_counts; j--) {
- ledcWrite(chan, j); // sweep servo back
- delayMicroseconds(1000); // need this 20mS for 1 cycle at 50Hz
- }
-}
-void playSequence() {
- cover(1);
- lift(3);
- cover(0);
- delay(500);
- lift(1);
- delay(400);
- lift(2);
- delay(300);
- cover(1);
- delay(250);
- cover(3);
- cover(2);
- lift(1);
- delay(2000);
- lift(0);
- cover(3);
-}
-void debug0() {
- cover(1);
- delay(3000);
- lift(1);
- delay(3000);
-}
-void debug1() {
- cover(2);
- delay(3000);
- lift(1);
- delay(3000);
-}
-void loop() {
- playSequence();
-}
-```
----
 
+---
+## Playing in an ensemble
+The violin was one of several robotic instruments performing together, kept in time over WiFi. Every instrument joined the same network, and a teacher-controlled conductor sent UDP packets to the group; our system only had to listen. A test/sync command prepared the instrument and confirmed communication, and a **go** command started the piece. The full arrangement and its timing were programmed and stored locally on an ESP microcontroller, so once the start packet arrived the violin played autonomously, in sync with the rest of the ensemble.
 
+---
+## Performance
+{% include youtube-video.html id="mOd76fNrCOg" autoplay="false" %}
 
+The finished instrument performed consistently, playing a recognizable "Demons" in time with the ensemble, and the whole thing was built end to end in under a week. According to the program, no previous team, in the high-school program or the graduate course it was modeled on, had attempted a robotic violin.
