@@ -24,8 +24,9 @@ profile_image: ./assets/images/profile-image/1729361401777.jfif
 
 
 # Link your resume
-# You can place your resume in assets/resume/{resume.pdf or add external link such as pdf saved in google drive 
-resume-url: https://drive.google.com/file/d/1hE4OYyBVghkJkYPLfuZtA9V9fUoku8tv/view # or /assets/resume/resume.pdf
+# The PDF is served from this repo — drop a new file in assets/resume/ and point this at it.
+# An external URL (Google Drive, etc.) also works here; the templates handle both.
+resume-url: /assets/resume/Daniel_Xu_Resume.pdf
 
 
 # Set up external links - this will show up as small icons next to your name.
